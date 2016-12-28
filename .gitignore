@@ -30,3 +30,10 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+###############################################
+# arquivos com outras versoes, apps, dados
+Arquivos/
+
+
+###############################################
