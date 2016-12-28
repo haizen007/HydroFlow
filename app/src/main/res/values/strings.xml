@@ -1,0 +1,38 @@
+<resources>
+
+    <string name="app_name">HydroFlow</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_email" translatable="false">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hiny_cpf" translatable="false">CPF</string>
+    <string name="hiny_phone">Phone</string>
+    <string name="hiny_address">Address</string>
+    <string name="hiny_cep" translatable="false">CEP</string>
+
+
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="btn_register">REGISTER</string>
+
+    <string name="btn_link_to_register">Sign Up</string>
+    <string name="btn_link_to_login">Login Me</string>
+
+    <string name="welcome">Welcome</string>
+
+    <string name="toast_login_faild">Login credentials are wrong</string>
+    <string name="toast_login_data_null">Please enter your credentials</string>
+
+    <string name="toast_error_email">Please enter a valid email address</string>
+    <string name="toast_error_password">Please enter a password of at least 8 characters</string>
+
+    <string name="toast_register_ok">User successfully registered</string>
+    <string name="toast_register_failed">Register failed</string>
+    <string name="toast_register_data_null">Please enter your details</string>
+
+    <string name="pDialog_login">Connecting…</string>
+    <string name="pDialog_register">Registering…</string>
+
+    <string name="exit">Press back again to exit</string>
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HydroFlow</string>
+    <string name="welcome">Bem-vindo</string>
+    <string name="toast_register_ok">Usuário registrado com sucesso</string>
+    <string name="toast_register_failed">Falha no registro</string>
+    <string name="toast_register_data_null">Preencha todos os campos</string>
+    <string name="toast_login_faild">Dados incorretos</string>
+    <string name="toast_login_data_null">Insira os seus dados</string>
+    <string name="pDialog_register">Registrando…</string>
+    <string name="pDialog_login">Conectando…</string>
+    <string name="hint_password">Senha</string>
+    <string name="hint_name">Nome</string>
+    <string name="exit">Pressione voltar novamente para sair</string>
+    <string name="btn_register">REGISTRAR</string>
+    <string name="btn_logout">DESCONECTAR</string>
+    <string name="btn_login">CONECTAR</string>
+    <string name="btn_link_to_register">Registrar</string>
+    <string name="btn_link_to_login">Conectar</string>
+    <string name="toast_error_email">Insira um endereço de e-mail válido</string>
+    <string name="toast_error_password">Insira uma senha com pelo menos 8 caracteres</string>
+    <string name="hiny_address">Endereço</string>
+    <string name="hiny_phone">Telefone</string>
+</resources>
