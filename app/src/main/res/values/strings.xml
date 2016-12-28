@@ -1,0 +1,83 @@
+<resources>
+
+    <string name="app_name">HydroFlow</string>
+
+    <string name="logo" translatable="false">logo</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_email" translatable="false">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hiny_cpf" translatable="false">CPF</string>
+    <string name="hiny_phone">Phone</string>
+    <string name="hiny_address">Address</string>
+    <string name="hiny_cep" translatable="false">CEP</string>
+
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="btn_register">REGISTER</string>
+
+    <string name="btn_link_to_register">Sign Up</string>
+    <string name="btn_link_to_login">Login Me</string>
+
+    <string name="welcome">Welcome</string>
+
+    <string name="toast_login_faild">Login credentials are wrong</string>
+    <string name="toast_login_data_null">Please enter your credentials</string>
+
+    <string name="toast_register_ok">User successfully registered</string>
+    <string name="toast_register_failed">Register failed</string>
+    <string name="toast_register_data_null">Please enter your details</string>
+
+    <string name="toast_error_email">Please enter a valid email address</string>
+    <string name="toast_error_password_login">Password must be at least\n8 characters</string>
+    <string name="toast_error_password_register">Please enter a password of at least\n8 characters</string>
+
+    <string name="pDialog_login">Connecting…</string>
+    <string name="pDialog_register">Registering…</string>
+
+    <string name="exit">Press back again to exit</string>
+
+    <string name="chart">Chart</string>
+    <string name="charts">Charts</string>
+
+    <string-array name="months">January, February, March, April, May, June, July, August,
+        September, October, November, December
+    </string-array>
+
+    <string name="month_01">January</string>
+    <string name="month_02">February</string>
+    <string name="month_03">March</string>
+    <string name="month_04">April</string>
+    <string name="month_05">May</string>
+    <string name="month_06">June</string>
+    <string name="month_07">July</string>
+    <string name="month_08">August</string>
+    <string name="month_09">September</string>
+    <string name="month_10">October</string>
+    <string name="month_11">November</string>
+    <string name="month_12">December</string>
+
+    <string name="day">Day</string>
+    <string name="liters">Liters</string>
+    <string name="months">Months</string>
+    <string name="cubic" translatable="false">M³</string>
+
+    <string name="chart_01_line_desc">1 - Comparison of consumption in liters</string>
+    <string name="chart_01_line_leg01">1 to 30 days</string>
+    <string name="chart_01_line_leg02">31 to 60 days</string>
+
+    <string name="chart_02_bar_desc">2 - Consumption per month in M³</string>
+
+    <string name="chart_03_pie_desc">3 - Consumption per month in annual &#37;</string>
+    <string name="chart_03_pie_txt_bottom">Click on the chart to shows in M³</string>
+    <string name="chart_03_pie_leg">TOTAL\nMONTH</string>
+
+    <string name="chart_04_neg_pos_desc">4 - Difference per month for the last two years in M³</string>
+
+    <string name="img_saved">Saved as PNG image</string>
+    <string name="img_error_to_save">ERROR\nCannot save the Image</string>
+    <string name="img_error_to_permission">ERROR\nPermission denied</string>
+    <string name="img_txt_01">• Fast click on chart show more info</string>
+    <string name="img_txt_02">• Long click on chart to save as image</string>
+
+</resources>
