@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#083a58</color>
+    <!--<color name="colorPrimary">#1d3650</color>-->       <!--v1.3.5.x-->
+    <!--<color name="colorPrimary">#3F51B5</color>-->       <!--v1.3.4-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorPrimaryDark">#3b4148</color>-->
+    <color name="colorPrimaryDark">#116191</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">#1da1f2</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#888888</color>
+
+    <!--<color name="bg_login">#26ae90</color>-->
+	<color name="bg_login">#1b2836</color>
+    <color name="bg_register">#ffffff</color>
+    <color name="bg_main">#ffffff</color>
+    <color name="bg_splash">#f4f4f4</color>
+
+    <!--<color name="btn_login">#26ae90</color>-->
+    <color name="btn_login">#ffffff</color>
+    <color name="btn_login_bg">#1da1f2</color>
+
+    <color name="btn_register">#ffffff</color>
+    <!--<color name="btn_register_bg">#ea4c88</color>-->
+    <color name="btn_register_bg">#1da1f2</color>
+
+    <color name="color_01">#333333</color>
+    <!--<color name="btn_logout_bg">#ff6861</color>-->
+    <color name="btn_logout_bg">#1da1f2</color>
+
+    <color name="input_login">#222222</color>
+    <color name="input_login_bg">#ffffff</color>
+    <color name="input_login_hint">#aab8c2</color>
+
+    <color name="input_register">#888888</color>
+    <color name="input_register_bg">#ffffff</color>
+    <color name="input_register_hint">#aab8c2</color>
+
+</resources>

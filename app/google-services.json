@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1037438643179",
+    "firebase_url": "https://hydroflow-f4efc.firebaseio.com",
+    "project_id": "hydroflow-f4efc",
+    "storage_bucket": "hydroflow-f4efc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037438643179:android:c4aad808b865d09f",
+        "android_client_info": {
+          "package_name": "online.hydroflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEOEeKKNmX_hvyicsU4MP1bRVgIcfGF74"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
