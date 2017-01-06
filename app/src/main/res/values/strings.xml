@@ -29,6 +29,7 @@
     <string name="toast_register_data_null">Please enter your details</string>
 
     <string name="toast_error_email">Please enter a valid email address</string>
+    <string name="toast_error_password_conn">System offline\ntry later</string>
     <string name="toast_error_password_login">Password must be at least\n8 characters</string>
     <string name="toast_error_password_register">Please enter a password of at least\n8 characters</string>
 

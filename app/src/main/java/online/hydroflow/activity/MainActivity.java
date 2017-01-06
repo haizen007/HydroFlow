@@ -17,7 +17,6 @@ import online.hydroflow.chart.Vendor;
 import online.hydroflow.helper.SQLiteHandler;
 import online.hydroflow.helper.SessionManager;
 
-@SuppressWarnings("ALL")
 public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();

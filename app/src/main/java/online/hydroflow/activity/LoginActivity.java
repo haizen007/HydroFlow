@@ -25,7 +25,6 @@ import online.hydroflow.chart.Vendor;
 import online.hydroflow.helper.SQLiteHandler;
 import online.hydroflow.helper.SessionManager;
 
-@SuppressWarnings("ALL")
 public class LoginActivity extends Activity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -125,10 +124,15 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error.getMessage() == null) {
+                    vendor.addToast(getString(R.string.toast_error_password_conn), LoginActivity.this);
+                } else {
+                    vendor.addToast(error.getMessage(), LoginActivity.this);
+                }
                 Log.e(TAG, "##### Login Error: " + error.getMessage() + " #####");
-                vendor.addToast(error.getMessage(), LoginActivity.this);
                 hideDialog();
             }
+
         }) {
 
             @Override

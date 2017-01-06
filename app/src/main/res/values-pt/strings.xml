@@ -52,4 +52,5 @@
     <string name="img_txt_02">• Clique longo no gráfico para salvar como imagem</string>
     <string name="img_txt_01">• Clique rápido no gráfico para exibir mais informações</string>
     <string name="img_error_to_permission">ERRO\nPermissão negada</string>
+    <string name="toast_error_password_conn">Sistema indisponível\ntente depois</string>
 </resources>

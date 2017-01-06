@@ -3,7 +3,7 @@
 1.3.7
 
 + Firebase (?)
-
++ Mensagem de erro no login e registro caso o sistema esteja indisponivel (o php nao valide)
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -51,34 +51,34 @@
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 1.3.3
-+	RegisterActivity codigo para Mask
-+ 	activity_register android:inputType="phone" para CPF, CEP e TELEFONE 
-+ 	Atualizado o Logo e todos os PNGs
-+	activity_splash.xml com nova imagem
-- 	activity_register android:inputType="number" e android:digits="0123456789-. " para CPF e CEP
++ RegisterActivity codigo para Mask
++ activity_register android:inputType="phone" para CPF, CEP e TELEFONE 
++ Atualizado o Logo e todos os PNGs
++ activity_splash.xml com nova imagem
+- activity_register android:inputType="number" e android:digits="0123456789-. " para CPF e CEP
 	DB	1.1
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 1.3.2
 
-+	activity_register.xml rejustado
-+	activity_register.xml etiquetas flutuantes
--	activity_register.xml btn Login retirado
-+	MainActivity: NOME, EMAIL, CPF antes dos dados
-+	MainActivity: added exibit versao App
--	RegisterActivity: login session retirado
--	LoginActivity: 	login session retirado
++ activity_register.xml rejustado
++ activity_register.xml etiquetas flutuantes
+- activity_register.xml btn Login retirado
++ MainActivity: NOME, EMAIL, CPF antes dos dados
++ MainActivity: added exibit versao App
+- RegisterActivity: login session retirado
+- LoginActivity: 	login session retirado
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 1.3.1
 
-+ 	PHP 1.3.1
-! 	RegisterActivity 	(PHP 1.3.1)
-! 	LoginActivity 		(PHP 1.3.1)
-!	Modificadas verificacoes de login session
-!	Alterado no PHP para exibit DATA_ATUALIZADO
-!	LOG	(avisos modificados com ##### e mais coisas)
-+	Layout Registro com todas os campos
++ PHP 1.3.1
+! RegisterActivity (PHP 1.3.1)
+! LoginActivity (PHP 1.3.1)
+! Modificadas verificacoes de login session
+! Alterado no PHP para exibit DATA_ATUALIZADO
+! LOG (avisos modificados com ##### e mais coisas)
++ Layout Registro com todas os campos
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -93,9 +93,9 @@
 
 1.2
 
-+ 	Splash
-+ 	Manifest mexido pra Splash
-! 	Registro com login automatico
++ Splash
++ Manifest mexido pra Splash
+! Registro com login automatico
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
