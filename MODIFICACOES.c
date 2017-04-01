@@ -2,6 +2,8 @@
 
 1.3.7
 
+! modificado o nome do arquivo "changes.c" para "MODIFICACOES.c"
+! atrualizadas as bibliotecas
 + Firebase (?)
 + Mensagem de erro no login e registro caso o sistema esteja indisponivel (o php nao valide)
 

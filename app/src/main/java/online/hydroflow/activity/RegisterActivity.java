@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.redmadrobot.inputmask.MaskedTextChangedListener;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,18 +68,14 @@ public class RegisterActivity extends Activity {
         db = new SQLiteHandler(getApplicationContext());
 
         // Creates the mask pattern CPF
-        MaskedTextChangedListener maskCPF = new MaskedTextChangedListener(
+        final MaskedTextChangedListener maskCPF = new MaskedTextChangedListener(
                 "[000].[000].[000]-[00]",
                 true,
                 inputCPF,
                 null,
                 new MaskedTextChangedListener.ValueListener() {
                     @Override
-                    public void onExtracted(@NotNull String value) {
-                    }
-
-                    @Override
-                    public void onMandatoryCharactersFilled(boolean complete) {
+                    public void onTextChanged(boolean maskFilled, @NonNull final String extractedValue) {
                     }
                 }
         );
@@ -87,18 +83,14 @@ public class RegisterActivity extends Activity {
         inputCPF.addTextChangedListener(maskCPF);
 
         // Creates the mask pattern PHONE
-        MaskedTextChangedListener maskPHONE = new MaskedTextChangedListener(
+        final MaskedTextChangedListener maskPHONE = new MaskedTextChangedListener(
                 "([00]) [00000]-[0000]",
                 true,
                 inputPhone,
                 null,
                 new MaskedTextChangedListener.ValueListener() {
                     @Override
-                    public void onExtracted(@NotNull String value) {
-                    }
-
-                    @Override
-                    public void onMandatoryCharactersFilled(boolean complete) {
+                    public void onTextChanged(boolean maskFilled, @NonNull final String extractedValue) {
                     }
                 }
         );
@@ -106,18 +98,14 @@ public class RegisterActivity extends Activity {
         inputPhone.addTextChangedListener(maskPHONE);
 
         // Creates the mask pattern CEP
-        MaskedTextChangedListener maskCEP = new MaskedTextChangedListener(
+        final MaskedTextChangedListener maskCEP = new MaskedTextChangedListener(
                 "[00000]-[000]]",
                 true,
                 inputCEP,
                 null,
                 new MaskedTextChangedListener.ValueListener() {
                     @Override
-                    public void onExtracted(@NotNull String value) {
-                    }
-
-                    @Override
-                    public void onMandatoryCharactersFilled(boolean complete) {
+                    public void onTextChanged(boolean maskFilled, @NonNull final String extractedValue) {
                     }
                 }
         );
