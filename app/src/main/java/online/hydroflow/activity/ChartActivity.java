@@ -66,7 +66,7 @@ public class ChartActivity extends Activity {
     private static final DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.US);   // Locale to USA for "." Decimal (unique pattern accepted for "Float")
     private static final DecimalFormat decimalFormat = new DecimalFormat("#.#", symbols);              // Format to 1 Decimal using Locale USA -> Float Happy!
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+//    @RequiresApi(api = Build.VERSION_CODES.N)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +147,7 @@ public class ChartActivity extends Activity {
         set1.setCircleRadius(3f);               // Circle Size
         set1.setCircleColor(Color.BLUE);        // Circle Color
         set1.setCircleHoleRadius(2f);           // Circle Hole Size
-        set1.setCircleColorHole(Color.GREEN);   // Circle Hole Color
+        set1.setCircleColorHole(Color.BLUE);   // Circle Hole Color
         set1.setDrawCircleHole(false);          // Circle Hole Draw?
         set1.setHighlightLineWidth(1.2f);       // HighLight Size
         set1.setHighLightColor(Color.BLUE);     // HighLight Color

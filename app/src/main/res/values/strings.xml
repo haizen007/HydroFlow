@@ -63,7 +63,7 @@
     <string name="months">Months</string>
     <string name="cubic" translatable="false">M³</string>
 
-    <string name="chart_01_line_desc">1 - Comparison of consumption in liters</string>
+    <string name="chart_01_line_desc">1 - Comparison of consumption in Liters</string>
     <string name="chart_01_line_leg01">1 to 30 days</string>
     <string name="chart_01_line_leg02">31 to 60 days</string>
 
@@ -75,10 +75,15 @@
 
     <string name="chart_04_neg_pos_desc">4 - Difference per month for the last two years in M³</string>
 
+    <string name="chart_05_real_time_desc">Consumption in Liters</string>
+    <string name="chart_05_real_time_leg">5 seconds</string>
+
     <string name="img_saved">Saved as PNG image</string>
     <string name="img_error_to_save">ERROR\nCannot save the Image</string>
     <string name="img_error_to_permission">ERROR\nPermission denied</string>
     <string name="img_txt_01">• Fast click on chart show more info</string>
     <string name="img_txt_02">• Long click on chart to save as image</string>
+    <string name="img_txt_03">• Updated every 5 seconds</string>
+    <string name="realtime">Real Time</string>
 
 </resources>

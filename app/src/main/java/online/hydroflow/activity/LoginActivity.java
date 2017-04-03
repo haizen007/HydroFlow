@@ -182,7 +182,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    // Link to Register Screen
+    // Go to Register Activity
     public void goRegisterActivity(View v) {
         vendor.addIntent(LoginActivity.this, RegisterActivity.class);
     }

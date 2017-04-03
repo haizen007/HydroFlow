@@ -88,7 +88,12 @@ public class MainActivity extends Activity {
         vendor.addIntent(MainActivity.this, LoginActivity.class);
     }
 
-    // Link to User Screen
+    // Go to RealTime Activity
+    public void goRealTimeActivity(View v) {
+        vendor.addIntent(MainActivity.this, RealTimeActivity.class);
+    }
+
+    // Go to Chart Activity
     public void goChartActivity(View v) {
         vendor.addIntent(MainActivity.this, ChartActivity.class);
     }

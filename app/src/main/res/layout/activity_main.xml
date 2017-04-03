@@ -62,19 +62,43 @@
                 android:padding="5dp"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnChart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_rounded_white"
-                android:onClick="goChartActivity"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="@string/charts"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btnChart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/btn_rounded_white"
+                    android:onClick="goChartActivity"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/charts"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btnRealTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/btn_rounded_white"
+                    android:onClick="goRealTimeActivity"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/realtime"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

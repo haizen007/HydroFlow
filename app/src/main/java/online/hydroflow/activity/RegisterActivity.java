@@ -253,7 +253,7 @@ public class RegisterActivity extends Activity {
 //        vendor.addIntent(RegisterActivity.this, LoginActivity.class);
 //    }
 
-    //  go back to Login Screen
+    // Go to Login Activity
     public void onBackPressed() {
         vendor.addIntent(RegisterActivity.this, LoginActivity.class);
     }
