@@ -2,10 +2,13 @@
 
 1.3.7
 
++ comecando integracao com Firebase, criada classe Constants mas ainda nao foi feito nada
++ grafico em tempo real em nova classe RealTimeActivity
++ Mensagem de erro no login e registro caso o sistema esteja indisponivel (o php nao valide)
+! alguns ajustes de layout
+! var now alterada para date em ChartActivity
 ! modificado o nome do arquivo "changes.c" para "MODIFICACOES.c"
 ! atrualizadas as bibliotecas
-+ Firebase (?)
-+ Mensagem de erro no login e registro caso o sistema esteja indisponivel (o php nao valide)
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

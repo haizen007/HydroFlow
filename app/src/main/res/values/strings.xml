@@ -59,7 +59,9 @@
     <string name="month_12">December</string>
 
     <string name="day">Day</string>
+    <string name="hour">Hour</string>
     <string name="liters">Liters</string>
+    <string name="milliliters" translatable="false">mL</string>
     <string name="months">Months</string>
     <string name="cubic" translatable="false">M³</string>
 
@@ -76,14 +78,14 @@
     <string name="chart_04_neg_pos_desc">4 - Difference per month for the last two years in M³</string>
 
     <string name="chart_05_real_time_desc">Consumption in Liters</string>
-    <string name="chart_05_real_time_leg">5 seconds</string>
+    <string name="chart_05_real_time_leg">1 second</string>
 
     <string name="img_saved">Saved as PNG image</string>
-    <string name="img_error_to_save">ERROR\nCannot save the Image</string>
+    <string name="img_error_to_save">ERROR\nCannot save the image</string>
     <string name="img_error_to_permission">ERROR\nPermission denied</string>
     <string name="img_txt_01">• Fast click on chart show more info</string>
     <string name="img_txt_02">• Long click on chart to save as image</string>
-    <string name="img_txt_03">• Updated every 5 seconds</string>
+    <string name="img_txt_03">• Updated every 1 second</string>
     <string name="realtime">Real Time</string>
 
 </resources>

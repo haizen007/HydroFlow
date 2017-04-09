@@ -48,13 +48,14 @@
     <string name="chart_03_pie_leg">TOTAL\nMÊS</string>
     <string name="chart_04_neg_pos_desc">4 - Diferença por mês nos últimos dois anos em M³</string>
     <string name="img_saved">Salvo como imagem PNG</string>
-    <string name="img_error_to_save">ERRO\nNão foi possível salvar a Imagem</string>
+    <string name="img_error_to_save">ERRO\nNão foi possível salvar a imagem</string>
     <string name="img_txt_02">• Clique longo no gráfico para salvar como imagem</string>
     <string name="img_txt_01">• Clique rápido no gráfico para exibir mais informações</string>
     <string name="img_error_to_permission">ERRO\nPermissão negada</string>
     <string name="toast_error_password_conn">Sistema indisponível\ntente depois</string>
     <string name="realtime">Tempo Real</string>
-    <string name="img_txt_03">• Atualizado a cada 5 segundos</string>
+    <string name="img_txt_03">• Atualizado a cada 1 segundo</string>
     <string name="chart_05_real_time_desc">Consumo em Litros</string>
-    <string name="chart_05_real_time_leg">5 segundos</string>
+    <string name="chart_05_real_time_leg">1 segundo</string>
+    <string name="hour">Hora</string>
 </resources>

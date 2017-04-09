@@ -21,6 +21,19 @@ android {
     }
     // "return void" removes the lint error: "Not all execution paths return a value".
     return void
+
+    // Para o Firebase
+    buildTypes.each {
+        it.buildConfigField 'String', 'UNIQUE_FIREBASE_ROOT_URL', UniqueFirebaseRootUrl
+    }
+
+    // Para o Firebase
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+
 }
 
 dependencies {
@@ -34,7 +47,7 @@ dependencies {
     compile 'com.android.support:design:25.1.0'                // Para o TextView exibir etiqueta flutuante do texto de hint quando o campo estiver preenchido
     compile 'com.android.volley:volley:1.0.0'                  // Biblioteca HTTP para se conectar ao PHP
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'         // Biblioteca para gerar os Graficos
-    compile 'com.redmadrobot:inputmask:2.2.1'                 // Biblioteca para EditText com Mask via Codigo | https://github.com/RedMadRobot/input-mask-android
+    compile 'com.redmadrobot:inputmask:2.2.1'                  // Biblioteca para EditText com Mask via Codigo | https://github.com/RedMadRobot/input-mask-android
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-crash:10.0.1'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
@@ -42,8 +55,8 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.google.firebase:firebase-invites:10.0.1'
-//    compile 'com.google.android.gms:play-services-auth:10.0.1' // Permite login pelo google
+    compile 'com.google.android.gms:play-services-auth:10.0.1' // Permite login pelo google
     testCompile 'junit:junit:4.12'
 }
 
-apply plugin: 'com.google.gms.google-services'          // Para o Firebase
+apply plugin: 'com.google.gms.google-services'                 // Para o Firebase
