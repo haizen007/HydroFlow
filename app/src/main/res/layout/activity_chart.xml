@@ -11,13 +11,14 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#1b2836"
@@ -59,6 +60,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/linearLayout"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -129,7 +131,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 

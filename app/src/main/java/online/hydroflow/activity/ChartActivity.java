@@ -3,11 +3,6 @@ package online.hydroflow.activity;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -37,12 +32,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 import online.hydroflow.R;
 import online.hydroflow.chart.ValueFormatter;
@@ -57,16 +48,14 @@ public class ChartActivity extends Activity {
     private SessionManager session;
 
     private final Vendor vendor = new Vendor();
-    private final String now = vendor.addDate();
+    private final String date = vendor.addDate();
     private boolean success;
     private int permission;
 
-    private static final Random r = new Random();
-
-    private static final DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.US);   // Locale to USA for "." Decimal (unique pattern accepted for "Float")
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#.#", symbols);              // Format to 1 Decimal using Locale USA -> Float Happy!
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    private LineChart lineChart;
+    private BarChart barChart;
+    private PieChart pieChart;
+    private BarChart NegativePositive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +91,7 @@ public class ChartActivity extends Activity {
 
         // LineChart - START
 
-        final LineChart lineChart = (LineChart) findViewById(R.id.LineChart);
+        lineChart = (LineChart) findViewById(R.id.LineChart);
 
         // add Description
         Description d1 = new Description();              // Description Created
@@ -126,14 +115,8 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 31; i++) { // Day 1 to 30
 
-            float n1 = r.nextFloat() + (r.nextInt(51) + 180); // Between 180.0 - 231.0
-            float n2 = r.nextFloat() + (r.nextInt(51) + 180); // Between 180.0 - 231.0
-
-            float f1 = Float.valueOf(decimalFormat.format(n1));  // Format n to 1 Decimal
-            float f2 = Float.valueOf(decimalFormat.format(n2));  // Format n to 1 Decimal
-
-            Entry a = new Entry(i, f1);
-            Entry b = new Entry(i, f2);
+            Entry a = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 - 230.0
+            Entry b = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 - 230.0
 
             dataA.add(a);
             dataB.add(b);
@@ -147,7 +130,7 @@ public class ChartActivity extends Activity {
         set1.setCircleRadius(3f);               // Circle Size
         set1.setCircleColor(Color.BLUE);        // Circle Color
         set1.setCircleHoleRadius(2f);           // Circle Hole Size
-        set1.setCircleColorHole(Color.GREEN);   // Circle Hole Color
+        set1.setCircleColorHole(Color.BLUE);   // Circle Hole Color
         set1.setDrawCircleHole(false);          // Circle Hole Draw?
         set1.setHighlightLineWidth(1.2f);       // HighLight Size
         set1.setHighLightColor(Color.BLUE);     // HighLight Color
@@ -206,6 +189,7 @@ public class ChartActivity extends Activity {
         lineChart.setDoubleTapToZoomEnabled(false);     // Double Tap > Zoom Enalbed?
         lineChart.setTouchEnabled(true);                // Touch Enabled?
         lineChart.setScaleEnabled(true);                // Zoom Enabled?
+        lineChart.setScaleYEnabled(false);              // Zoom Y Enable?
         lineChart.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
         lineChart.animateX(2500);                       // Animation
         lineChart.invalidate();                         // Refresh
@@ -250,9 +234,11 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = lineChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_01_line_desc) + " " + now, "/DCIM/HydroFlow");
+                        boolean save = lineChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_01_line_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 1\n" + getString(R.string.img_saved), ChartActivity.this);
+                        } else {
+                            vendor.addToast(getString(R.string.img_error_to_save), ChartActivity.this);
                         }
                     }
                 }
@@ -266,7 +252,7 @@ public class ChartActivity extends Activity {
 
         // BarChart - START
 
-        final BarChart barChart = (BarChart) findViewById(R.id.BarChart);
+        barChart = (BarChart) findViewById(R.id.BarChart);
 
         // add Description
         Description d2 = new Description();     // Description Created
@@ -301,9 +287,8 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 13; i++) { // Months 1 to 12
 
-            float n = r.nextFloat() + (r.nextInt(3) + 4);      // Between 5.0 - 7.0
-            float f = Float.valueOf(decimalFormat.format(n));  // Format n to 1 Decimal
-            entries.add(new BarEntry(i, f));                   // Add Entries
+            entries.add(new BarEntry(i, vendor.addRandom(3, 4)));  // Between 4.0 - 7.0
+
         }
 
         BarDataSet dataset = new BarDataSet(entries, getString(R.string.months));
@@ -400,9 +385,11 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = barChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_02_bar_desc) + " " + now, "/DCIM/HydroFlow");
+                        boolean save = barChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_02_bar_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 2\n" + getString(R.string.img_saved), ChartActivity.this);
+                        } else {
+                            vendor.addToast(getString(R.string.img_error_to_save), ChartActivity.this);
                         }
                     }
                 }
@@ -417,7 +404,7 @@ public class ChartActivity extends Activity {
 
         // PieChart - START
 
-        final PieChart pieChart = (PieChart) findViewById(R.id.PieChart);
+        pieChart = (PieChart) findViewById(R.id.PieChart);
 
         // add Description
         Description d3 = new Description();             // Description Created
@@ -490,9 +477,11 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = pieChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_03_pie_desc) + " " + now, "/DCIM/HydroFlow");
+                        boolean save = pieChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_03_pie_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 3\n" + getString(R.string.img_saved), ChartActivity.this);
+                        } else {
+                            vendor.addToast(getString(R.string.img_error_to_save), ChartActivity.this);
                         }
                     }
                 }
@@ -506,7 +495,7 @@ public class ChartActivity extends Activity {
 
         // BarChartPositiveNegative - START
 
-        final BarChart NegativePositive = (BarChart) findViewById(R.id.NegativePositive);
+        NegativePositive = (BarChart) findViewById(R.id.NegativePositive);
 
         // add Description
         Description d4 = new Description();      // Description Created
@@ -572,18 +561,9 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 13; i++) {
 
-            float n1 = r.nextFloat() + (r.nextInt(2) + 0.3f);
-            float n2 = r.nextFloat() + (r.nextInt(2) + 0.3f);
-            float n = n1 - n2;
+            float n = vendor.addRandom(2, 0) + vendor.addRandom(2, -2) + 0.3f;
+            float f = vendor.addFormatDecimal(n);
 
-            // values will never be 0, min -0.3 or +0.3
-            if (n <= 0) {
-                n = n - 0.3f;
-            } else {
-                n = n + 0.3f;
-            }
-
-            float f = Float.valueOf(decimalFormat.format(n));
             data4.add(new Data(i, f));
         }
 
@@ -623,9 +603,11 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = NegativePositive.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_04_neg_pos_desc) + " " + now, "/DCIM/HydroFlow");
+                        boolean save = NegativePositive.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_04_neg_pos_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 4\n" + getString(R.string.img_saved), ChartActivity.this);
+                        } else {
+                            vendor.addToast(getString(R.string.img_error_to_save), ChartActivity.this);
                         }
                     }
                 }
@@ -716,9 +698,7 @@ public class ChartActivity extends Activity {
 
         for (int i = 0; i < 12; i++) {
 
-            float n = r.nextFloat() + (r.nextInt(3) + 4);       // Between 5.0 - 7.0
-            float f = Float.valueOf(decimalFormat.format(n));   // Format n to 1 Decimal
-            entries.add(new PieEntry(f, xData[i]));             // Add F and xData
+            entries.add(new PieEntry(vendor.addRandom(3, 4), xData[i]));  // Between 4.0 - 7.0
 //            entries.add(new PieEntry(yData[i], xData[i]));
         }
 

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="inputmask-2.2.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/4d0c50a76046beeeb55e2dc3154bfcb666e625cf/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/4d0c50a76046beeeb55e2dc3154bfcb666e625cf/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.redmadrobot/inputmask/2.2.1/6bafdc2062dafc7b16ed74e2dd461395f4422107/inputmask-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

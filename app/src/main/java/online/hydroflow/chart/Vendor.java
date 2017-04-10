@@ -13,14 +13,22 @@ import android.widget.Toast;
 import android.support.v4.app.FragmentActivity;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
 // needed for getString()
 //import online.hydroflow.R;
 
 public class Vendor extends FragmentActivity {
+
+    Calendar c = Calendar.getInstance();
+
+    final DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.US);   // Locale to USA for "." Decimal (unique pattern accepted for "Float")
+    final DecimalFormat decimalFormat = new DecimalFormat("#.#", symbols);              // Format to 1 Decimal using Locale USA -> Float Happy!
 
     // Check for a valid email
     public static boolean isEmailValid(String email) {
@@ -64,7 +72,7 @@ public class Vendor extends FragmentActivity {
      */
     public final int addPermissions(Activity a) {
 
-        // defult 0 to grant permission when it's already granted, needed to -> addFolder
+        // defult 0 to grant permission when it's already granted then -> addFolder
         final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
 
         if (ContextCompat.checkSelfPermission(a,
@@ -80,11 +88,11 @@ public class Vendor extends FragmentActivity {
         return MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
     }
 
-    // Create Folder
-    private final File folder = new File(Environment.getExternalStorageDirectory() + "/DCIM/HydroFlow");
-    private boolean success = true;
-
+    // Check if the folder exists, if not create it
     public final boolean addFolder() {
+
+        final File folder = new File(Environment.getExternalStorageDirectory() + "/DCIM/HydroFlow");
+        boolean success = true;
 
         if (!folder.exists()) {
             success = folder.mkdir();
@@ -92,13 +100,62 @@ public class Vendor extends FragmentActivity {
         return success;
     }
 
-    // get Current Date
+    // Get the current date
     public final String addDate() {
 
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("[dd-MM-yyyy]", Locale.US);
+//        int day = c.get(Calendar.DAY_OF_MONTH);
+//        int month = c.get(Calendar.MONTH);
+//        int year = c.get(Calendar.YEAR);
+//        String date = day + "-" + month + "-" + year;
+//        return date;
 
+        SimpleDateFormat df = new SimpleDateFormat("[dd-MM-yyyy]", Locale.US);
         return df.format(c.getTime());
+    }
+
+    // Get the current time
+//    public final String addTime() {
+//
+//        String h, m, s;
+//
+//        int hour = c.get(Calendar.HOUR_OF_DAY);
+//        int minutes = c.get(Calendar.MINUTE);
+//        int seconds = c.get(Calendar.SECOND);
+//
+//        if (hour < 10) {
+//            h = "0" + String.valueOf(hour);
+//        } else {
+//            h = String.valueOf(hour);
+//        }
+//
+//        if (minutes < 10) {
+//            m = "0" + String.valueOf(minutes);
+//        } else {
+//            m = String.valueOf(minutes);
+//        }
+//
+//        if (seconds < 10) {
+//            s = "0" + String.valueOf(seconds);
+//        } else {
+//            s = String.valueOf(seconds);
+//        }
+//
+//        return h + ":" + m + ":" + s;
+//    }
+
+    public float addRandom(int n1, int n2) {
+
+        Random r = new Random();
+
+        float f = r.nextFloat() + (r.nextInt(n1) + n2); // Between n2 + n1
+        return Float.valueOf(decimalFormat.format(f));  // Format n to 1 Decimal
+
+    }
+
+    public float addFormatDecimal(float f) {
+
+        return Float.valueOf(decimalFormat.format(f));  // Format n to 1 Decimal
+
     }
 
 }
