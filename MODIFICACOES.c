@@ -2,7 +2,12 @@
 
 1.3.8
 
-+ Firebase sera integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity]
++ Firebase integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity
++ Grafico de Tempo Real com logica funcionando, atualiza a cada 1s mediante o Firebase
+! Layout alterado para graficos e textos ficarem centralizados, nao sei pq eles bugaram
+! as constantes do AppConfig foram para Constants
+- removido o AppConfig
+- removido o pacote app e o AppController foi para o inico do p[acote, nao esta mais dentro de app
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

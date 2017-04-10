@@ -1,6 +1,7 @@
 package online.hydroflow.activity;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,11 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import online.hydroflow.R;
 import online.hydroflow.chart.Vendor;
@@ -31,6 +37,9 @@ public class RealTimeActivity extends Activity {
     private SessionManager session;
 
     private LineChart realTime;
+    float consumoFloat = 0;
+    float consumoTeste = 0;
+    String consumo = "0";
 
     private final Vendor vendor = new Vendor();
 
@@ -141,6 +150,7 @@ public class RealTimeActivity extends Activity {
         });
 
         feedMultiple();
+//        addEntry();
 
         Log.d(TAG, "##### RealTimeActivity - OK #####");
 
@@ -149,7 +159,7 @@ public class RealTimeActivity extends Activity {
 
     private void addEntry() {
 
-        LineData data = realTime.getData();
+        final LineData data = realTime.getData();
 
         if (data != null) {
 
@@ -160,21 +170,53 @@ public class RealTimeActivity extends Activity {
                 data.addDataSet(set);
             }
 
-            float n = (float) ((Math.random() * 235f) + 15f);    // Between 15 - 250
-            float f = vendor.addFormatDecimal(n);                // Format n to 1 Decimal
+//            float n = (float) ((Math.random() * 235f) + 15f);    // Between 15 - 250
+//            float f = vendor.addFormatDecimal(n);                // Format n to 1 Decimal
 
-//            float n = vendor.addRandom(1, 0) + 0.2f * 0.3f;
-//            float f = vendor.addFormatDecimal(n);
 
-            data.addEntry(new Entry(set.getEntryCount(), f), 0);
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("usuario").child("atualConsumo");
+
+            // Read from the database
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    consumo = dataSnapshot.getValue(String.class);
+                    Log.d(TAG, "### Value is: " + consumo + " ###");
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "### Failed to read value ###", error.toException());
+                }
+            });
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            data.addEntry(new Entry(set.getEntryCount(), consumoFloat), 0);
             data.notifyDataChanged();
+
+            if (consumoTeste != Float.parseFloat(consumo)) {
+                consumoFloat = Float.parseFloat(consumo);
+            } else {
+                consumoFloat = 0;
+            }
+            consumoTeste = Float.parseFloat(consumo);
 
             // let the chart know it's data has changed
             realTime.notifyDataSetChanged();
 
+
             // limit the number of visible entries
-            realTime.setVisibleXRangeMaximum(15);
-            // realTime.setVisibleYRange(30, AxisDependency.LEFT);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                realTime.setVisibleXRangeMaximum(5);
+            } else {
+                realTime.setVisibleXRangeMaximum(10);
+            }
 
             // move to the latest entry
             realTime.moveViewToX(data.getEntryCount());
@@ -205,7 +247,6 @@ public class RealTimeActivity extends Activity {
             @Override
             public void run() {
                 for (int i = 1; i < 99999; i++) {
-
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 
@@ -258,13 +299,13 @@ public class RealTimeActivity extends Activity {
         vendor.addIntent(RealTimeActivity.this, MainActivity.class);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (thread != null) {
-            thread.interrupt();
-        }
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//
+//        if (thread != null) {
+//            thread.interrupt();
+//        }
+//    }
 
 }

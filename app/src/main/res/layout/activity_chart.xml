@@ -14,7 +14,6 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -22,15 +21,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#1b2836"
-                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="20dp">
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/charts"
-                    android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
@@ -40,8 +38,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:text="@string/img_txt_01"
-                    android:textAlignment="center"
                     android:textColor="#FFF"
                     android:textSize="12sp" />
 
@@ -49,8 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="-10dp"
+                    android:gravity="center"
                     android:text="@string/img_txt_02"
-                    android:textAlignment="center"
                     android:textColor="#FFF"
                     android:textSize="12sp" />
 
@@ -69,8 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
+                    android:gravity="center"
                     android:text="@string/chart_01_line_desc"
-                    android:textAlignment="center"
                     android:textColor="@android:color/black" />
 
                 <com.github.mikephil.charting.charts.LineChart
@@ -83,8 +81,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="70dp"
+                    android:gravity="center"
                     android:text="@string/chart_02_bar_desc"
-                    android:textAlignment="center"
                     android:textColor="@android:color/black" />
 
                 <com.github.mikephil.charting.charts.BarChart
@@ -97,8 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="70dp"
+                    android:gravity="center"
                     android:text="@string/chart_03_pie_desc"
-                    android:textAlignment="center"
                     android:textColor="@android:color/black" />
 
                 <com.github.mikephil.charting.charts.PieChart
@@ -111,16 +109,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="0dp"
+                    android:gravity="center"
                     android:text="@string/chart_03_pie_txt_bottom"
-                    android:textAlignment="center"
                     android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="70dp"
+                    android:gravity="center"
                     android:text="@string/chart_04_neg_pos_desc"
-                    android:textAlignment="center"
                     android:textColor="@android:color/black" />
 
                 <com.github.mikephil.charting.charts.BarChart
