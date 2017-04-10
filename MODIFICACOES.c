@@ -1,5 +1,11 @@
 /*------------------------------------------------------------------------------------------------------------------------*/
 
+1.3.8
+
++ Firebase sera integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity]
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
 1.3.7
 
 + comecando integracao com Firebase, criada classe Constants mas ainda nao foi feito nada
