@@ -6,6 +6,7 @@
 + grafico em tempo real em nova classe RealTimeActivity
 + Mensagem de erro no login e registro caso o sistema esteja indisponivel (o php nao valide)
 ! alguns ajustes de layout
+! classe Vendor agora faz o addRandom(), addDate(), addFormat...
 ! var now alterada para date em ChartActivity
 ! modificado o nome do arquivo "changes.c" para "MODIFICACOES.c"
 ! atrualizadas as bibliotecas
