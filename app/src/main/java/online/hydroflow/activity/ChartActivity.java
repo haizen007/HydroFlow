@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import online.hydroflow.R;
-import online.hydroflow.chart.ValueFormatter;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SQLiteHandler;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.utils.ValueFormatter;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SQLiteHandler;
+import online.hydroflow.sql.SessionManager;
 
 public class ChartActivity extends Activity {
 
@@ -204,17 +204,16 @@ public class ChartActivity extends Activity {
                         .getAxisDependency(), 500);
 
 //                Log.d(TAG, "##### " + e.toString() + " #####");
+//                Log.d(TAG, "\n##### " + h.toString() + " #####");
 
-                // get X index
-                int pos = (int) h.getX();
+                // get the dataset 0 or 1
+                int xDataSet = h.getDataSetIndex();
 
-                // get Y index > value
-                String yLITROS = String.valueOf(h.getY());
-
-                // get X index -> String Day
-                String xDIA = String.valueOf(pos);
-
-                vendor.addToast(getString(R.string.day) + " " + xDIA + "\n" + yLITROS + " " + getString(R.string.liters), ChartActivity.this);
+                if (xDataSet == 0) { // 1 to 30 days
+                    vendor.addToast(getString(R.string.day) + " " + (int) h.getX() + "\n" + h.getY() + " " + getString(R.string.liters), ChartActivity.this);
+                } else { //  31 to 60 days
+                    vendor.addToast(getString(R.string.day) + " " + ((int) h.getX() + 30) + "\n" + h.getY() + " " + getString(R.string.liters), ChartActivity.this);
+                }
             }
 
             @Override
@@ -357,16 +356,8 @@ public class ChartActivity extends Activity {
 
 //                Log.d(TAG, "##### " + e.toString() + " #####");
 
-                // get X index
-                int pos = (int) h.getX();
-
-                // get Y index > value
-                String Y = String.valueOf(h.getY());
-
-                // index (1-12) and xData Array (0-11)
-                String X = xData[pos - 1];
-
-                vendor.addToast(X + "\n" + Y + " " + getString(R.string.cubic), ChartActivity.this);
+                // xData [months] pos (1 to 12) - 1, to be (0 to 11)
+                vendor.addToast(xData[((int) h.getX() - 1)] + "\n" + h.getY() + " " + getString(R.string.cubic), ChartActivity.this);
             }
 
             @Override
@@ -450,15 +441,8 @@ public class ChartActivity extends Activity {
 
 //                Log.d(TAG, "##### " + e.toString() + " #####");
 
-                // get X index
-                int pos = (int) h.getX();
-
-                // get Y index > value
-                String Y = String.valueOf(h.getY());
-
-                // index (0-11) and xData Array (0-11)
-                String X = xData[pos];
-                vendor.addToast(X + "\n" + Y + " " + getString(R.string.cubic), ChartActivity.this);
+                // xData [months]
+                vendor.addToast(xData[(int) h.getX()] + "\n" + h.getY() + " " + getString(R.string.cubic), ChartActivity.this);
             }
 
             @Override
@@ -576,15 +560,8 @@ public class ChartActivity extends Activity {
 
 //                Log.d(TAG, "##### " + e.toString() + " #####");
 
-                // get X index
-                int pos = (int) h.getX();
-
-                // get Y index > value
-                String Y = String.valueOf(h.getY());
-
-                // index (1-12) and xData Array (0-11)
-                String X = xData[pos - 1];
-                vendor.addToast(X + "\n" + Y + " " + getString(R.string.cubic), ChartActivity.this);
+                // xData [months] pos (1 to 12) - 1, to be (0 to 11)
+                vendor.addToast(xData[((int) h.getX() - 1)] + "\n" + h.getY() + " " + getString(R.string.cubic), ChartActivity.this);
             }
 
             @Override

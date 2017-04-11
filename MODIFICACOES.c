@@ -4,10 +4,16 @@
 
 + Firebase integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity
 + Grafico de Tempo Real com logica funcionando, atualiza a cada 1s mediante o Firebase
++ Salva o Server.TIMESTAMP diretamente pelo app integrado com o tempo de leitura do consumo
 ! Layout alterado para graficos e textos ficarem centralizados, nao sei pq eles bugaram
 ! as constantes do AppConfig foram para Constants
+! Vendor e ValueFormatter movidos para pacote utils
+! pacote helper alterado para sql
+! ChartActivity com toast minimizado em poucas linhas, porem mais complexo para debugar
+! ChartActivity LineChart agora exibe de 1 a 30 ou de 31 a 60 dias dependendo do DataSet clicado
+- pacote chart removido
 - removido o AppConfig
-- removido o pacote app e o AppController foi para o inico do p[acote, nao esta mais dentro de app
+- removido o pacote app e o AppController foi para o inico do pacote, nao esta mais dentro de app
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

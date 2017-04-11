@@ -42,8 +42,8 @@
         <activity android:name=".activity.ChartActivity" />
         <activity android:name=".activity.RealTimeActivity" />
 
-        <activity android:name=".chart.ValueFormatter" />
-        <activity android:name=".chart.Vendor" />
+        <activity android:name=".utils.ValueFormatter" />
+        <activity android:name=".utils.Vendor" />
 
     </application>
 

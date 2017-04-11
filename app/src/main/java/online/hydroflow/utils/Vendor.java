@@ -1,4 +1,4 @@
-package online.hydroflow.chart;
+package online.hydroflow.utils;
 
 import android.Manifest;
 import android.app.Activity;
@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -157,5 +158,6 @@ public class Vendor extends FragmentActivity {
         return Float.valueOf(decimalFormat.format(f));  // Format n to 1 Decimal
 
     }
+
 
 }

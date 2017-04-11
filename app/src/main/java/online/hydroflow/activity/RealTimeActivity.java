@@ -23,25 +23,35 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import online.hydroflow.R;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SQLiteHandler;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SQLiteHandler;
+import online.hydroflow.sql.SessionManager;
+import online.hydroflow.utils.Constants;
 
 public class RealTimeActivity extends Activity {
 
     private static final String TAG = ChartActivity.class.getSimpleName();
+
     private SQLiteHandler db;
     private SessionManager session;
 
     private LineChart realTime;
-    float consumoFloat = 0;
-    float consumoTeste = 0;
-    String consumo = "0";
+    private float consumoFloat = 0;
+    private float consumoTeste = 0;
+    private String consumo = "0";
+    private String timeStamp;
+    private Long hora;
+
+    private Thread thread;
 
     private final Vendor vendor = new Vendor();
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference(Constants.FIREBASE_VALUE_USUARIO);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,16 +141,7 @@ public class RealTimeActivity extends Activity {
                 realTime.centerViewToAnimated(e.getX(), e.getY(), realTime.getData().getDataSetByIndex(h.getDataSetIndex())
                         .getAxisDependency(), 500);
 
-                // get X index
-                int pos = (int) h.getX();
-
-                // get Y index > value
-                String yML = String.valueOf(h.getY());
-
-                // get X index -> String Time
-                String xSEG = String.valueOf(pos + 1);
-
-                vendor.addToast(xSEG + "s" + "\n" + yML + " " + getString(R.string.milliliters), RealTimeActivity.this);
+                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
             }
 
             @Override
@@ -150,7 +151,6 @@ public class RealTimeActivity extends Activity {
         });
 
         feedMultiple();
-//        addEntry();
 
         Log.d(TAG, "##### RealTimeActivity - OK #####");
 
@@ -173,19 +173,16 @@ public class RealTimeActivity extends Activity {
 //            float n = (float) ((Math.random() * 235f) + 15f);    // Between 15 - 250
 //            float f = vendor.addFormatDecimal(n);                // Format n to 1 Decimal
 
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("usuario").child("atualConsumo");
-
-            // Read from the database
-            myRef.addValueEventListener(new ValueEventListener() {
+            // Read from the database ONCE, to keep cheking use "addValueEventListener"
+//            myRef.addValueEventListener(new ValueEventListener() {
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    consumo = dataSnapshot.getValue(String.class);
-                    Log.d(TAG, "### Value is: " + consumo + " ###");
+                    consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_ATUAL_CONSUMO).getValue(String.class);
+                    hora = dataSnapshot.child(Constants.FIREBASE_VALUE_ATUAL_HORA).getValue(Long.class);
+                    timeStamp = Constants.SIMPLE_DATE_FORMAT.format(hora);
+                    Log.d(TAG, "### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " ###");
                 }
 
                 @Override
@@ -195,7 +192,8 @@ public class RealTimeActivity extends Activity {
                 }
             });
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Set the timestamp
+            myRef.child(Constants.FIREBASE_VALUE_ATUAL_HORA).setValue(ServerValue.TIMESTAMP);
 
             data.addEntry(new Entry(set.getEntryCount(), consumoFloat), 0);
             data.notifyDataChanged();
@@ -210,7 +208,6 @@ public class RealTimeActivity extends Activity {
             // let the chart know it's data has changed
             realTime.notifyDataSetChanged();
 
-
             // limit the number of visible entries
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 realTime.setVisibleXRangeMaximum(5);
@@ -221,13 +218,9 @@ public class RealTimeActivity extends Activity {
             // move to the latest entry
             realTime.moveViewToX(data.getEntryCount());
 
-            // this automatically refreshes the chart (calls invalidate())
-            // realTime.moveViewTo(data.getXValCount()-7, 55f,
-            // AxisDependency.LEFT);
         }
     }
 
-    private Thread thread;
 
     private void feedMultiple() {
 
@@ -246,7 +239,7 @@ public class RealTimeActivity extends Activity {
 
             @Override
             public void run() {
-                for (int i = 1; i < 99999; i++) {
+                for (int i = 1; i < 999; i++) {
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 
@@ -299,13 +292,13 @@ public class RealTimeActivity extends Activity {
         vendor.addIntent(RealTimeActivity.this, MainActivity.class);
     }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//
-//        if (thread != null) {
-//            thread.interrupt();
-//        }
-//    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (thread != null) {
+            thread.interrupt();
+        }
+    }
 
 }

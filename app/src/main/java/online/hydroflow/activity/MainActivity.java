@@ -13,9 +13,9 @@ import java.util.HashMap;
 
 import online.hydroflow.BuildConfig;
 import online.hydroflow.R;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SQLiteHandler;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SQLiteHandler;
+import online.hydroflow.sql.SessionManager;
 
 public class MainActivity extends Activity {
 
