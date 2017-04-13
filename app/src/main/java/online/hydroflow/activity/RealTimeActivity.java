@@ -1,6 +1,7 @@
 package online.hydroflow.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class RealTimeActivity extends Activity {
     private String consumo = "0";
     private String timeStamp;
     private Long hora;
+    private int loop = 999;
 
     private Thread thread;
 
@@ -239,7 +241,7 @@ public class RealTimeActivity extends Activity {
 
             @Override
             public void run() {
-                for (int i = 1; i < 999; i++) {
+                for (int i = 0; i < loop; i++) {
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 
@@ -297,7 +299,9 @@ public class RealTimeActivity extends Activity {
         super.onPause();
 
         if (thread != null) {
+            loop = 1;
             thread.interrupt();
+
         }
     }
 

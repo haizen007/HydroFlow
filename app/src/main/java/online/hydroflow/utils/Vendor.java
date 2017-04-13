@@ -24,7 +24,7 @@ import java.util.Random;
 // needed for getString()
 //import online.hydroflow.R;
 
-public class Vendor extends FragmentActivity {
+public class Vendor {
 
     Calendar c = Calendar.getInstance();
 
