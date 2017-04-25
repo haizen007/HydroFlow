@@ -1,9 +1,18 @@
 /*------------------------------------------------------------------------------------------------------------------------*/
 
+1.3.9
+
++ Iniciada integracao com NodeMCU via Firebase
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
 1.3.8
 
+! Alterado de 1 segundo para 3 segundos a leitura
+! Alterado o a var consumo de String para float em RealTimeActivity e no Firebase de "5" para apenas 5
 ! Ajuste para strings mililitros no titulo do grafico
-
 + Firebase integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity
 + Grafico de Tempo Real com logica funcionando, atualiza a cada 1s mediante o Firebase
 + Salva o Server.TIMESTAMP diretamente pelo app integrado com o tempo de leitura do consumo
