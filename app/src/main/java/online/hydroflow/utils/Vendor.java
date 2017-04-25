@@ -148,7 +148,7 @@ public class Vendor {
 
         Random r = new Random();
 
-        float f = r.nextFloat() + (r.nextInt(n1) + n2); // Between n2 + n1
+        float f = r.nextFloat() + r.nextInt(n1) + n2;   // Random between [0.0,1.0] + random(n1) + n2
         return Float.valueOf(decimalFormat.format(f));  // Format n to 1 Decimal
 
     }

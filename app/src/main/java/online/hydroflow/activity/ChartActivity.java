@@ -115,8 +115,8 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 31; i++) { // Day 1 to 30
 
-            Entry a = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 - 230.0
-            Entry b = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 - 230.0
+            Entry a = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 to 230.0
+            Entry b = new Entry(i, vendor.addRandom(50, 180)); // Between 180.0 to 230.0
 
             dataA.add(a);
             dataB.add(b);
@@ -286,7 +286,7 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 13; i++) { // Months 1 to 12
 
-            entries.add(new BarEntry(i, vendor.addRandom(3, 4)));  // Between 4.0 - 7.0
+            entries.add(new BarEntry(i, vendor.addRandom(3, 4)));  // Between 4.0 to 7.0
 
         }
 
@@ -545,7 +545,7 @@ public class ChartActivity extends Activity {
 
         for (int i = 1; i < 13; i++) {
 
-            float n = vendor.addRandom(2, 0) + vendor.addRandom(2, -2) + 0.3f;
+            float n = vendor.addRandom(2, 0) - vendor.addRandom(2, 0) + 0.3f;
             float f = vendor.addFormatDecimal(n);
 
             data4.add(new Data(i, f));
@@ -675,7 +675,7 @@ public class ChartActivity extends Activity {
 
         for (int i = 0; i < 12; i++) {
 
-            entries.add(new PieEntry(vendor.addRandom(3, 4), xData[i]));  // Between 4.0 - 7.0
+            entries.add(new PieEntry(vendor.addRandom(3, 4), xData[i]));  // Between 4.0 to 7.0
 //            entries.add(new PieEntry(yData[i], xData[i]));
         }
 

@@ -1,7 +1,6 @@
 package online.hydroflow.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,7 +42,7 @@ public class RealTimeActivity extends Activity {
     private LineChart realTime;
     private float consumoFloat = 0;
     private float consumoTeste = 0;
-    private String consumo = "0";
+    private float consumo = 0;
     private String timeStamp;
     private Long hora;
     private int loop = 999;
@@ -181,7 +180,7 @@ public class RealTimeActivity extends Activity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_ATUAL_CONSUMO).getValue(String.class);
+                    consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_ATUAL_CONSUMO).getValue(Float.class);
                     hora = dataSnapshot.child(Constants.FIREBASE_VALUE_ATUAL_HORA).getValue(Long.class);
                     timeStamp = Constants.SIMPLE_DATE_FORMAT.format(hora);
                     Log.d(TAG, "### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " ###");
@@ -200,12 +199,12 @@ public class RealTimeActivity extends Activity {
             data.addEntry(new Entry(set.getEntryCount(), consumoFloat), 0);
             data.notifyDataChanged();
 
-            if (consumoTeste != Float.parseFloat(consumo)) {
-                consumoFloat = Float.parseFloat(consumo);
+            if (consumoTeste != consumo) {
+                consumoFloat = consumo;
             } else {
                 consumoFloat = 0;
             }
-            consumoTeste = Float.parseFloat(consumo);
+            consumoTeste = consumo;
 
             // let the chart know it's data has changed
             realTime.notifyDataSetChanged();
@@ -226,8 +225,8 @@ public class RealTimeActivity extends Activity {
 
     private void feedMultiple() {
 
-        if (thread != null)
-            thread.interrupt();
+//        if (thread != null)
+//            thread.interrupt();
 
         final Runnable runnable = new Runnable() {
 
@@ -246,7 +245,7 @@ public class RealTimeActivity extends Activity {
                     runOnUiThread(runnable);
 
                     try {
-                        Thread.sleep(1000); // refresh time
+                        Thread.sleep(3000); // refresh time
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -299,9 +298,8 @@ public class RealTimeActivity extends Activity {
         super.onPause();
 
         if (thread != null) {
-            loop = 1;
             thread.interrupt();
-
+            loop = 0;
         }
     }
 

@@ -2,6 +2,8 @@
 
 1.3.8
 
+! Ajuste para strings mililitros no titulo do grafico
+
 + Firebase integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity
 + Grafico de Tempo Real com logica funcionando, atualiza a cada 1s mediante o Firebase
 + Salva o Server.TIMESTAMP diretamente pelo app integrado com o tempo de leitura do consumo
