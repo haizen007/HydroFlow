@@ -2,9 +2,9 @@
 
 1.3.9
 
-+ Iniciada integracao com NodeMCU via Firebase
-
-
++ Iniciada integracao com NodeMCU via Firebase, na versao anterior pegava so o valor do timestamp do servidor Firebase
++ Metodo fillMonths() para BarChart e PieChart
+! Cor de vermelhor para roxo no grafico 1
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

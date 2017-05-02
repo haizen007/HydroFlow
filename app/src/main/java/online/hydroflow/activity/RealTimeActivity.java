@@ -40,12 +40,11 @@ public class RealTimeActivity extends Activity {
     private SessionManager session;
 
     private LineChart realTime;
-    private float consumoFloat = 0;
-    private float consumoTeste = 0;
-    private float consumo = 0;
+    private float consumo;
+    private float aux;
+    private int loop = 9999;
     private String timeStamp;
     private Long hora;
-    private int loop = 999;
 
     private Thread thread;
 
@@ -196,15 +195,14 @@ public class RealTimeActivity extends Activity {
             // Set the timestamp
             myRef.child(Constants.FIREBASE_VALUE_ATUAL_HORA).setValue(ServerValue.TIMESTAMP);
 
-            data.addEntry(new Entry(set.getEntryCount(), consumoFloat), 0);
+            if (aux == consumo) {
+                data.addEntry(new Entry(set.getEntryCount(), 0), 0);
+            } else {
+                data.addEntry(new Entry(set.getEntryCount(), consumo), 0);
+            }
             data.notifyDataChanged();
 
-            if (consumoTeste != consumo) {
-                consumoFloat = consumo;
-            } else {
-                consumoFloat = 0;
-            }
-            consumoTeste = consumo;
+            aux = consumo;
 
             // let the chart know it's data has changed
             realTime.notifyDataSetChanged();
@@ -296,7 +294,6 @@ public class RealTimeActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-
         if (thread != null) {
             thread.interrupt();
             loop = 0;

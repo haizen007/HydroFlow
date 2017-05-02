@@ -52,10 +52,12 @@ public class ChartActivity extends Activity {
     private boolean success;
     private int permission;
 
-    private LineChart lineChart;
-    private BarChart barChart;
-    private PieChart pieChart;
+    private LineChart LineChart;
+    private BarChart BarChart;
+    private PieChart PieChart;
     private BarChart NegativePositive;
+
+    private final float months[] = new float[12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,8 @@ public class ChartActivity extends Activity {
             }
         });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Fill the Months Array with random data for BarChart and PieChart
+        fillMonths();
 
         // xData for Bar and Pie
         final String[] xData = {
@@ -91,7 +94,7 @@ public class ChartActivity extends Activity {
 
         // LineChart - START
 
-        lineChart = (LineChart) findViewById(R.id.LineChart);
+        LineChart = (LineChart) findViewById(R.id.LineChart);
 
         // add Description
         Description d1 = new Description();              // Description Created
@@ -100,7 +103,7 @@ public class ChartActivity extends Activity {
         d1.setEnabled(false);                            // Description Enabled?
 
         // add Legend
-        Legend l1 = lineChart.getLegend();                                   // Create Legend
+        Legend l1 = LineChart.getLegend();                                   // Create Legend
         l1.setForm(Legend.LegendForm.LINE);                                  // Legend Symbol Style
         l1.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);  // Legend Alignment
         l1.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);      // Legend Position
@@ -130,29 +133,29 @@ public class ChartActivity extends Activity {
         set1.setCircleRadius(3f);               // Circle Size
         set1.setCircleColor(Color.BLUE);        // Circle Color
         set1.setCircleHoleRadius(2f);           // Circle Hole Size
-        set1.setCircleColorHole(Color.BLUE);   // Circle Hole Color
+        set1.setCircleColorHole(Color.BLUE);    // Circle Hole Color
         set1.setDrawCircleHole(false);          // Circle Hole Draw?
         set1.setHighlightLineWidth(1.2f);       // HighLight Size
         set1.setHighLightColor(Color.BLUE);     // HighLight Color
-        set1.setFillAlpha(30);                  // Fill Alpha
+        set1.setFillAlpha(40);                  // Fill Alpha
         set1.setFillColor(Color.CYAN);          // Fill Color
         set1.setDrawFilled(true);               // Fill Enabled?
 
         // add LineDataSet 2
         LineDataSet set2 = new LineDataSet(dataB, getString(R.string.chart_01_line_leg02));
 
-        set2.setFormSize(20f);                  // Line Size
-        set2.setColor(Color.RED);               // Line Color
-        set2.setCircleRadius(3f);               // Circle Size
-        set2.setCircleColor(Color.RED);         // Circle Color
-        set2.setCircleHoleRadius(2f);           // Circle Hole Size
-        set2.setCircleColorHole(Color.MAGENTA); // Circle Hole Color
-        set2.setDrawCircleHole(false);          // Circle Hole Draw?
-        set2.setHighlightLineWidth(1.2f);       // HighLight Size
-        set2.setHighLightColor(Color.RED);      // HighLight Color
-        set2.setFillAlpha(15);                  // Fill Alpha
-        set2.setFillColor(Color.MAGENTA);       // Fill Color
-        set2.setDrawFilled(true);               // Fill Enabled?
+        set2.setFormSize(20f);                                // Line Size
+        set2.setColor(Color.parseColor("#AA00ff"));           // Line Color
+        set2.setCircleRadius(3f);                             // Circle Size
+        set2.setCircleColor(Color.parseColor("#AA00ff"));     // Circle Color
+        set2.setCircleHoleRadius(2f);                         // Circle Hole Size
+        set2.setCircleColorHole(Color.parseColor("#AA00ff")); // Circle Hole Color
+        set2.setDrawCircleHole(false);                        // Circle Hole Draw?
+        set2.setHighlightLineWidth(1.2f);                     // HighLight Size
+        set2.setHighLightColor(Color.parseColor("#AA00ff"));  // HighLight Color
+        set2.setFillAlpha(20);                                // Fill Alpha
+        set2.setFillColor(Color.parseColor("#AA00ff"));       // Fill Color
+        set2.setDrawFilled(true);                             // Fill Enabled?
 
         // add LineDataSet 1 and 2 to lineDataSets
         List<ILineDataSet> lineDataSets = new ArrayList<>();
@@ -168,39 +171,39 @@ public class ChartActivity extends Activity {
         data1.setHighlightEnabled(true);               // HighLight Enabled?
         data1.setDrawValues(false);                    // Values Enable?
 
-        XAxis x1 = lineChart.getXAxis();
+        XAxis x1 = LineChart.getXAxis();
         x1.setDrawAxisLine(false);            // X Axis Lines? (top and bottom)
         x1.setDrawGridLines(true);            // X Axis Grid Lines?
         x1.setTextColor(Color.BLACK);         // X Axis Value Text Color
         x1.setGridColor(Color.LTGRAY);        // X Axis Grid Color
         x1.setAxisLineColor(Color.LTGRAY);    // X Axis Line Color
 
-        YAxis y1 = lineChart.getAxisLeft();
+        YAxis y1 = LineChart.getAxisLeft();
         y1.setGridColor(Color.TRANSPARENT);   // Y Axis Left - Grid Color (set just for one side and it will be apply for Left and Right)
         y1.setAxisLineColor(Color.LTGRAY);    // Y Axis Left - Line Color
 
-        YAxis y11 = lineChart.getAxisRight();
+        YAxis y11 = LineChart.getAxisRight();
         y11.setAxisLineColor(Color.LTGRAY);   // Y Axis Right - Line Color
 
-        lineChart.setData(data1);                       // Add Data to Chart
-        lineChart.setDescription(d1);                   // Add Description
-        lineChart.setHighlightPerDragEnabled(false);    // HighLight to Drag Enabled?
-        lineChart.setPinchZoom(false);                  // if disabled, scaling can be done on x- and y-axis separately
-        lineChart.setDoubleTapToZoomEnabled(false);     // Double Tap > Zoom Enalbed?
-        lineChart.setTouchEnabled(true);                // Touch Enabled?
-        lineChart.setScaleEnabled(true);                // Zoom Enabled?
-        lineChart.setScaleYEnabled(false);              // Zoom Y Enable?
-        lineChart.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
-        lineChart.animateX(2500);                       // Animation
-        lineChart.invalidate();                         // Refresh
+        LineChart.setData(data1);                       // Add Data to Chart
+        LineChart.setDescription(d1);                   // Add Description
+        LineChart.setHighlightPerDragEnabled(false);    // HighLight to Drag Enabled?
+        LineChart.setPinchZoom(false);                  // if disabled, scaling can be done on x- and y-axis separately
+        LineChart.setDoubleTapToZoomEnabled(false);     // Double Tap > Zoom Enalbed?
+        LineChart.setTouchEnabled(true);                // Touch Enabled?
+        LineChart.setScaleEnabled(true);                // Zoom Enabled?
+        LineChart.setScaleYEnabled(false);              // Zoom Y Enable?
+        LineChart.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
+        LineChart.animateX(2500);                       // Animation
+        LineChart.invalidate();                         // Refresh
 
         // On Clicked Listner
-        lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        LineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
 
                 // Center Chart View When On Clicked Value Value
-                lineChart.centerViewToAnimated(e.getX(), e.getY(), lineChart.getData().getDataSetByIndex(h.getDataSetIndex())
+                LineChart.centerViewToAnimated(e.getX(), e.getY(), LineChart.getData().getDataSetByIndex(h.getDataSetIndex())
                         .getAxisDependency(), 500);
 
 //                Log.d(TAG, "##### " + e.toString() + " #####");
@@ -223,7 +226,7 @@ public class ChartActivity extends Activity {
         });
 
         // On LongPress Listner
-        lineChart.setOnLongClickListener(new View.OnLongClickListener() {
+        LineChart.setOnLongClickListener(new View.OnLongClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public boolean onLongClick(View view) {
@@ -233,7 +236,7 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = lineChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_01_line_desc) + " " + date, "/DCIM/HydroFlow");
+                        boolean save = LineChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_01_line_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 1\n" + getString(R.string.img_saved), ChartActivity.this);
                         } else {
@@ -251,7 +254,7 @@ public class ChartActivity extends Activity {
 
         // BarChart - START
 
-        barChart = (BarChart) findViewById(R.id.BarChart);
+        BarChart = (BarChart) findViewById(R.id.BarChart);
 
         // add Description
         Description d2 = new Description();     // Description Created
@@ -260,7 +263,7 @@ public class ChartActivity extends Activity {
         d2.setEnabled(false);                   // Description Enabled?
 
         // add Legend
-        Legend l2 = barChart.getLegend();
+        Legend l2 = BarChart.getLegend();
         l2.setForm(Legend.LegendForm.SQUARE);                                // Legend Symbol Style
         l2.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);    // Legend Alignment
         l2.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);      // Legend Position
@@ -284,10 +287,8 @@ public class ChartActivity extends Activity {
 //        entries.add(new BarEntry(11f, 53.8f));
 //        entries.add(new BarEntry(12f, 46.6f));
 
-        for (int i = 1; i < 13; i++) { // Months 1 to 12
-
-            entries.add(new BarEntry(i, vendor.addRandom(3, 4)));  // Between 4.0 to 7.0
-
+        for (int i = 0; i < 12; i++) { // Months 1 to 12
+            entries.add(new BarEntry(i + 1, months[i]));
         }
 
         BarDataSet dataset = new BarDataSet(entries, getString(R.string.months));
@@ -325,32 +326,32 @@ public class ChartActivity extends Activity {
         data2.setValueTextSize(10f);                     // Value Text Size (entries)
         data2.setValueTextColor(Color.BLACK);            // Value Text Color (entries)
 
-        XAxis x2 = barChart.getXAxis();
+        XAxis x2 = BarChart.getXAxis();
         x2.setDrawAxisLine(false);            // X Axis Lines? (top and bottom)
         x2.setDrawGridLines(true);            // X Axis Grid Lines?
         x2.setTextColor(Color.BLACK);         // X Axis Value Text Color
         x2.setGridColor(Color.LTGRAY);        // X Axis Grid Color
         x2.setAxisLineColor(Color.LTGRAY);    // X Axis Line Color
 
-        YAxis y2 = barChart.getAxisLeft();
+        YAxis y2 = BarChart.getAxisLeft();
         y2.setGridColor(Color.TRANSPARENT);   // Y Axis Left - Grid Color (set just for one side and it will be apply for Left and Right)
         y2.setAxisLineColor(Color.LTGRAY);    // Y Axis Left - Line Color
 
-        YAxis y22 = barChart.getAxisRight();
+        YAxis y22 = BarChart.getAxisRight();
         y22.setAxisLineColor(Color.LTGRAY);   // Y Axis Right - Line Color
 
-        barChart.setData(data2);                        // Add Data to Chart
-        barChart.setDescription(d2);                    // Add Description
-        barChart.setDrawValueAboveBar(true);            // Values Above Bars?
-        barChart.setFitBars(true);                      // Create Space Between Bars to Edge?
-        barChart.setTouchEnabled(true);                 // Touch Enabled?
-        barChart.setScaleEnabled(false);                // Zoom Enabled?
-        barChart.setHardwareAccelerationEnabled(true);  // Hardware Accelaration?
-        barChart.animateY(3250);                        // Animation
-        barChart.invalidate();                          // Refresh
+        BarChart.setData(data2);                        // Add Data to Chart
+        BarChart.setDescription(d2);                    // Add Description
+        BarChart.setDrawValueAboveBar(true);            // Values Above Bars?
+        BarChart.setFitBars(true);                      // Create Space Between Bars to Edge?
+        BarChart.setTouchEnabled(true);                 // Touch Enabled?
+        BarChart.setScaleEnabled(false);                // Zoom Enabled?
+        BarChart.setHardwareAccelerationEnabled(true);  // Hardware Accelaration?
+        BarChart.animateY(3250);                        // Animation
+        BarChart.invalidate();                          // Refresh
 
         // On Clicked Listner
-        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        BarChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
 
@@ -367,7 +368,7 @@ public class ChartActivity extends Activity {
         });
 
         // On LongPress Listner
-        barChart.setOnLongClickListener(new View.OnLongClickListener() {
+        BarChart.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
 
@@ -376,7 +377,7 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = barChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_02_bar_desc) + " " + date, "/DCIM/HydroFlow");
+                        boolean save = BarChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_02_bar_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 2\n" + getString(R.string.img_saved), ChartActivity.this);
                         } else {
@@ -395,7 +396,7 @@ public class ChartActivity extends Activity {
 
         // PieChart - START
 
-        pieChart = (PieChart) findViewById(R.id.PieChart);
+        PieChart = (PieChart) findViewById(R.id.PieChart);
 
         // add Description
         Description d3 = new Description();             // Description Created
@@ -404,7 +405,7 @@ public class ChartActivity extends Activity {
         d3.setEnabled(false);                           // Description Enabled?
 
         // add Legend
-        Legend l3 = pieChart.getLegend();                                   // Legend Created
+        Legend l3 = PieChart.getLegend();                                   // Legend Created
         l3.setForm(Legend.LegendForm.CIRCLE);                               // Legend Symbol Style
         l3.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);  // Legend Alignment
         l3.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);        // Legend Position
@@ -413,29 +414,29 @@ public class ChartActivity extends Activity {
         l3.setDrawInside(true);                                             // Legend Inside?
         l3.setEnabled(false);                                               // Legend Enabled?
 
-        addDataSet(pieChart);   // Add Data and Dataset
+        addDataSet(PieChart);   // Add Data and Dataset
 
-        pieChart.setDescription(d3);                   // Add Description
-        pieChart.setRotationEnabled(true);             // Chart Rotation Enabled?
-        pieChart.setUsePercentValues(true);            // Data Calculeted in %?
-        pieChart.setHoleColor(Color.TRANSPARENT);      // Hole Color
-        pieChart.setHoleRadius(30f);                   // Hole Size
-        pieChart.setCenterText(getString(R.string.chart_03_pie_leg));          // Center Text
-        pieChart.setCenterTextSize(14f);               // Center Text Size
-        pieChart.setCenterTextColor(Color.BLACK);      // Center Text Color
-        pieChart.setDrawCenterText(true);              // Center Text Enable?
-        pieChart.setTransparentCircleRadius(50f);      // Trans. Circle Size
-        pieChart.setTransparentCircleAlpha(175);       // Trans. Circle Alpha
-        pieChart.setEntryLabelTextSize(11f);           // Entries Text Size
-        pieChart.setEntryLabelColor(Color.BLACK);      // Entries Text Color (x)
-        pieChart.setDrawEntryLabels(true);             // Entries Enabled?
-        pieChart.setTouchEnabled(true);                // Touch Enabled?
-        pieChart.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
-        pieChart.animateY(4000);                       // Animation
-        pieChart.invalidate();                         // Refresh
+        PieChart.setDescription(d3);                   // Add Description
+        PieChart.setRotationEnabled(true);             // Chart Rotation Enabled?
+        PieChart.setUsePercentValues(true);            // Data Calculeted in %?
+        PieChart.setHoleColor(Color.TRANSPARENT);      // Hole Color
+        PieChart.setHoleRadius(30f);                   // Hole Size
+        PieChart.setCenterText(getString(R.string.chart_03_pie_leg));          // Center Text
+        PieChart.setCenterTextSize(14f);               // Center Text Size
+        PieChart.setCenterTextColor(Color.BLACK);      // Center Text Color
+        PieChart.setDrawCenterText(true);              // Center Text Enable?
+        PieChart.setTransparentCircleRadius(50f);      // Trans. Circle Size
+        PieChart.setTransparentCircleAlpha(175);       // Trans. Circle Alpha
+        PieChart.setEntryLabelTextSize(11f);           // Entries Text Size
+        PieChart.setEntryLabelColor(Color.BLACK);      // Entries Text Color (x)
+        PieChart.setDrawEntryLabels(true);             // Entries Enabled?
+        PieChart.setTouchEnabled(true);                // Touch Enabled?
+        PieChart.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
+        PieChart.animateY(4000);                       // Animation
+        PieChart.invalidate();                         // Refresh
 
         // On Clicked Listner
-        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        PieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
 
@@ -452,7 +453,7 @@ public class ChartActivity extends Activity {
         });
 
         // On LongPress Listner
-        pieChart.setOnLongClickListener(new View.OnLongClickListener() {
+        PieChart.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
 
@@ -461,7 +462,7 @@ public class ChartActivity extends Activity {
                 if (permission == 0) {
                     success = vendor.addFolder();
                     if (success) {
-                        boolean save = pieChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_03_pie_desc) + " " + date, "/DCIM/HydroFlow");
+                        boolean save = PieChart.saveToPath(getString(R.string.chart) + " " + getString(R.string.chart_03_pie_desc) + " " + date, "/DCIM/HydroFlow");
                         if (save) {
                             vendor.addToast(getString(R.string.chart) + " 3\n" + getString(R.string.img_saved), ChartActivity.this);
                         } else {
@@ -674,9 +675,7 @@ public class ChartActivity extends Activity {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
-
-            entries.add(new PieEntry(vendor.addRandom(3, 4), xData[i]));  // Between 4.0 to 7.0
-//            entries.add(new PieEntry(yData[i], xData[i]));
+            entries.add(new PieEntry(months[i], xData[i]));  // Between 4.0 to 7.0
         }
 
         // create DataSet
@@ -719,6 +718,13 @@ public class ChartActivity extends Activity {
             data3.setValueTextSize(16f);         // Value Text Size  (y)
         }
         pieChart.setData(data3);                 // Add Data to Chart
+    }
+
+    private void fillMonths() {
+        for (int i = 0; i < 12; i++) {
+            float x = vendor.addRandom(3, 4); // Between 4.0 to 7.0
+            months[i] = x;
+        }
     }
 
     /**
