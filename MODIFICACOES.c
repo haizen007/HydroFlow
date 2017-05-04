@@ -2,8 +2,13 @@
 
 1.3.9
 
+! alterado RealTimeActivity nas strigs de 3s para 1s, thread deletada, pega direto do Firebase apenas
+- feedMultiple(); removida pois agora não insere nada via Android ou thread
++ feedMultiple(); substituido por checkFirebase(); para adicionar diretamente do Firebase, atualizando no ritmo do NodeMCU
++ firebase2 para ler timeStamp em nodo separado do consumo, que vem do NodeMCU, e funcionar no grafico
+? falta corrigir o problema do timestamp mostrar o último valor, mesmo clicando num consumo mais antigo
 + Iniciada integracao com NodeMCU via Firebase, na versao anterior pegava so o valor do timestamp do servidor Firebase
-+ Metodo fillMonths() para BarChart e PieChart
++ Metodo fillMonths() para BarChart e PieChart deixando eles com mesmos valores
 ! Cor de vermelhor para roxo no grafico 1
 
 /*------------------------------------------------------------------------------------------------------------------------*/
