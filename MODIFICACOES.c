@@ -2,9 +2,10 @@
 
 1.3.9
 
++ Metodos de troca de atividade como onStart() e onPause para garantir que o app finalize e chame o checkFirebase()
 ! alterado RealTimeActivity nas strigs de 3s para 1s, thread deletada, pega direto do Firebase apenas
-- feedMultiple(); removida pois agora não insere nada via Android ou thread
-+ feedMultiple(); substituido por checkFirebase(); para adicionar diretamente do Firebase, atualizando no ritmo do NodeMCU
+- feedMultiple() removido pois agora não insere nada via Android ou thread
++ feedMultiple() substituido por checkFirebase() para adicionar diretamente do Firebase, atualizando no ritmo do NodeMCU
 + firebase2 para ler timeStamp em nodo separado do consumo, que vem do NodeMCU, e funcionar no grafico
 ? falta corrigir o problema do timestamp mostrar o último valor, mesmo clicando num consumo mais antigo
 + Iniciada integracao com NodeMCU via Firebase, na versao anterior pegava so o valor do timestamp do servidor Firebase
@@ -15,13 +16,13 @@
 
 1.3.8
 
-! Alterado de 1 segundo para 3 segundos a leitura
-! Alterado o a var consumo de String para float em RealTimeActivity e no Firebase de "5" para apenas 5
-! Ajuste para strings mililitros no titulo do grafico
 + Firebase integrado, apesar de ja existir as dependencias adicionadas, para o RealTimeActivity
 + Grafico de Tempo Real com logica funcionando, atualiza a cada 1s mediante o Firebase
 + Salva o Server.TIMESTAMP diretamente pelo app integrado com o tempo de leitura do consumo
 ! Layout alterado para graficos e textos ficarem centralizados, nao sei pq eles bugaram
+! Alterado de 1 segundo para 3 segundos a leitura
+! Alterado o a var consumo de String para float em RealTimeActivity e no Firebase de "5" para apenas 5
+! Ajuste para strings mililitros no titulo do grafico
 ! as constantes do AppConfig foram para Constants
 ! Vendor e ValueFormatter movidos para pacote utils
 ! pacote helper alterado para sql
@@ -102,9 +103,9 @@
 
 + activity_register.xml rejustado
 + activity_register.xml etiquetas flutuantes
-- activity_register.xml btn Login retirado
 + MainActivity: NOME, EMAIL, CPF antes dos dados
 + MainActivity: added exibit versao App
+- activity_register.xml btn Login retirado
 - RegisterActivity: login session retirado
 - LoginActivity: 	login session retirado
 /*------------------------------------------------------------------------------------------------------------------------*/
@@ -112,21 +113,21 @@
 1.3.1
 
 + PHP 1.3.1
++ Layout Registro com todas os campos
 ! RegisterActivity (PHP 1.3.1)
 ! LoginActivity (PHP 1.3.1)
 ! Modificadas verificacoes de login session
 ! Alterado no PHP para exibit DATA_ATUALIZADO
 ! LOG (avisos modificados com ##### e mais coisas)
-+ Layout Registro com todas os campos
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 1.3.0
 
 + 	PHP 1.3
++ 	Layout Registro com todas os campos
 ! 	RegisterActivity 	(PHP 1.3)
 ! 	LoginActivity 		(PHP 1.3)
-+ 	Layout Registro com todas os campos
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

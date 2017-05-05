@@ -746,4 +746,9 @@ public class ChartActivity extends Activity {
         vendor.addIntent(ChartActivity.this, MainActivity.class);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
 }

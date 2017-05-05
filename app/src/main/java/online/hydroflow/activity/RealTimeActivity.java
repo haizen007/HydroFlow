@@ -40,10 +40,10 @@ public class RealTimeActivity extends Activity {
     private SessionManager session;
 
     private LineChart RealTIme;
-    private float consumo;
-    private float aux;
+    private float consumo, aux;
     private String timeStamp;
     private Long hora;
+    private ValueEventListener listener1, listener2;
 
     private final Vendor vendor = new Vendor();
 
@@ -151,7 +151,6 @@ public class RealTimeActivity extends Activity {
 
         // Just to fill with something on the screen before the Firebase data
         addEntry(0);
-        checkFirebase();
 
         Log.d(TAG, "##### RealTImeActivity - OK #####");
 
@@ -161,11 +160,11 @@ public class RealTimeActivity extends Activity {
 
     private void checkFirebase() {
 
-        firebase1.addValueEventListener(new ValueEventListener() {
+        listener1 = firebase1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_CONSUMO).child(Constants.FIREBASE_VALUE_TEMPO_REAL).getValue(Float.class);
-                Log.d(TAG, "### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " ###");
+                Log.d(TAG, "##### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " #####");
 
                 /*
                   Not necessary anymore, but in case of no data change on Firebase the final value will be 0.
@@ -183,11 +182,12 @@ public class RealTimeActivity extends Activity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Failed to read values
-                Log.d(TAG, "### Failed to read values from Firebase ###", databaseError.toException());
+                Log.d(TAG, "#####  Failed to read values from Firebase #####", databaseError.toException());
             }
         });
 
-        firebase2.addValueEventListener(new ValueEventListener() {
+
+        listener2 = firebase2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hora = dataSnapshot.getValue(Long.class);
@@ -197,7 +197,7 @@ public class RealTimeActivity extends Activity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Failed to read values
-                Log.d(TAG, "### Failed to read values from Firebase ###", databaseError.toException());
+                Log.d(TAG, "##### Failed to read values from Firebase #####", databaseError.toException());
             }
         });
     }
@@ -273,4 +273,31 @@ public class RealTimeActivity extends Activity {
         vendor.addIntent(RealTimeActivity.this, MainActivity.class);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "##### onStart ##### ");
+        // call the Firebase Listners
+        checkFirebase();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "##### onResume ##### ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        firebase1.removeEventListener(listener1);
+        firebase2.removeEventListener(listener2);
+        Log.d(TAG, "##### onPause ##### ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "##### onStop ##### ");
+    }
 }
