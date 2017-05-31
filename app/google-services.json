@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1037438643179-5kdscmegnvgkfrbm018ecvevdnmf2k3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "online.hydroflow",
+            "certificate_hash": "25f4f93d4db9a37587a5b80d56cd34230cdc3d94"
+          }
+        },
+        {
           "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

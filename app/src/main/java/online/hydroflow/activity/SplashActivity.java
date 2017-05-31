@@ -7,8 +7,8 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import online.hydroflow.R;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SessionManager;
 @RequiresApi(api = Build.VERSION_CODES.N)
 
 public class SplashActivity extends Activity {

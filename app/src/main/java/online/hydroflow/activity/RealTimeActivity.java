@@ -1,11 +1,11 @@
 package online.hydroflow.activity;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -18,28 +18,43 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 
 import online.hydroflow.R;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SQLiteHandler;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SQLiteHandler;
+import online.hydroflow.sql.SessionManager;
+import online.hydroflow.utils.Constants;
 
 public class RealTimeActivity extends Activity {
 
     private static final String TAG = ChartActivity.class.getSimpleName();
+
     private SQLiteHandler db;
     private SessionManager session;
 
-    private LineChart realTime;
+    private LineChart RealTIme;
+    private float consumo, aux;
+    private String timeStamp;
+    private Long hora;
+    private ValueEventListener listener1, listener2;
 
     private final Vendor vendor = new Vendor();
+
+    // Firebase connection
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference firebase1 = database.getReference(Constants.FIREBASE_VALUE_USUARIO);
+    DatabaseReference firebase2 = database.getReference(Constants.FIREBASE_VALUE_TIMESTAMP);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime);
-
-        Button btnLogout = (Button) findViewById(R.id.btnLogout);
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -47,22 +62,13 @@ public class RealTimeActivity extends Activity {
         // session manager
         session = new SessionManager(getApplicationContext());
 
-        // Logout button click event
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                logoutUser();
-            }
-        });
-
-        realTime = (LineChart) findViewById(R.id.RealTimeChart);
+        RealTIme = (LineChart) findViewById(R.id.RealTimeChart);
 
         // add Data
         LineData data = new LineData();
 
         // add empty data
-        realTime.setData(data);
+        RealTIme.setData(data);
 
         // add Description
         Description d = new Description();              // Description Created
@@ -71,7 +77,7 @@ public class RealTimeActivity extends Activity {
         d.setEnabled(false);                            // Description Enabled?
 
         // add Legend
-        Legend l = realTime.getLegend();                                    // Create Legend
+        Legend l = RealTIme.getLegend();                                    // Create Legend
         l.setForm(Legend.LegendForm.LINE);                                  // Legend Symbol Style
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);  // Legend Alignment
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);      // Legend Position
@@ -80,7 +86,7 @@ public class RealTimeActivity extends Activity {
         l.setDrawInside(false);                                             // Legend Inside?
         l.setEnabled(true);                                                 // Legend Enabled?
 
-        XAxis x = realTime.getXAxis();
+        XAxis x = RealTIme.getXAxis();
         x.setDrawAxisLine(false);            // X Axis Lines? (top and bottom)
         x.setDrawGridLines(false);           // X Axis Grid Lines?
         x.setTextColor(Color.BLACK);         // X Axis Value Text Color
@@ -89,49 +95,40 @@ public class RealTimeActivity extends Activity {
         x.setAvoidFirstLastClipping(true);   // X Axis Avoid Clip
         x.setEnabled(false);                 // X Axis Enable?
 
-        YAxis leftAxis = realTime.getAxisLeft();
+        YAxis leftAxis = RealTIme.getAxisLeft();
         leftAxis.setGridColor(Color.TRANSPARENT);   // Y Axis Left - Grid Color (set just for one side and it will be apply for Left and Right)
         leftAxis.setAxisLineColor(Color.LTGRAY);    // Y Axis Left - Line Color
         leftAxis.setTextColor(Color.GRAY);          // Y Axis Left - Value Text Color
         leftAxis.setEnabled(true);                  // Y Axis Left Enable?
 
-        YAxis rightAxis = realTime.getAxisRight();
+        YAxis rightAxis = RealTIme.getAxisRight();
         rightAxis.setAxisLineColor(Color.LTGRAY);   // Y Axis Right - Line Color
         rightAxis.setTextColor(Color.GRAY);         // Y Axis Right - Value Text Color
         leftAxis.setEnabled(true);                  // Y Axis Right Enable?
 
-        realTime.setData(data);                        // Add Data to Chart
-        realTime.setDescription(d);                    // Add Description
-        realTime.setHighlightPerDragEnabled(false);    // HighLight to Drag Enabled?
-        realTime.setPinchZoom(false);                  // if disabled, scaling can be done on x- and y-axis separately
-        realTime.setDoubleTapToZoomEnabled(false);     // Double Tap > Zoom Enalbed?
-        realTime.setScaleEnabled(true);                // Zoom Enabled?
-        realTime.setScaleYEnabled(false);              // Zoom Y Enable?
-        realTime.setDragDecelerationEnabled(true);     // Continue to scroll
-        realTime.setTouchEnabled(true);                // Touch Enabled?
-        realTime.setDragEnabled(true);                 // Move chart with the finger
-        realTime.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
-        realTime.animateX(2500);                       // Animation
+        RealTIme.setData(data);                        // Add Data to Chart
+        RealTIme.setDescription(d);                    // Add Description
+        RealTIme.setHighlightPerDragEnabled(false);    // HighLight to Drag Enabled?
+        RealTIme.setPinchZoom(false);                  // if disabled, scaling can be done on x- and y-axis separately
+        RealTIme.setDoubleTapToZoomEnabled(false);     // Double Tap > Zoom Enalbed?
+        RealTIme.setScaleEnabled(true);                // Zoom Enabled?
+        RealTIme.setScaleYEnabled(false);              // Zoom Y Enable?
+        RealTIme.setDragDecelerationEnabled(true);     // Continue to scroll
+        RealTIme.setTouchEnabled(true);                // Touch Enabled?
+        RealTIme.setDragEnabled(true);                 // Move chart with the finger
+        RealTIme.setHardwareAccelerationEnabled(true); // Hardware Accelaration?
+        RealTIme.animateX(2500);                       // Animation
 
         // On Clicked Listner
-        realTime.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        RealTIme.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
 
                 // Center Chart View When On Clicked Value Value
-                realTime.centerViewToAnimated(e.getX(), e.getY(), realTime.getData().getDataSetByIndex(h.getDataSetIndex())
+                RealTIme.centerViewToAnimated(e.getX(), e.getY(), RealTIme.getData().getDataSetByIndex(h.getDataSetIndex())
                         .getAxisDependency(), 500);
 
-                // get X index
-                int pos = (int) h.getX();
-
-                // get Y index > value
-                String yML = String.valueOf(h.getY());
-
-                // get X index -> String Time
-                String xSEG = String.valueOf(pos + 1);
-
-                vendor.addToast(xSEG + "s" + "\n" + yML + " " + getString(R.string.milliliters), RealTimeActivity.this);
+                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
             }
 
             @Override
@@ -140,115 +137,119 @@ public class RealTimeActivity extends Activity {
             }
         });
 
-        feedMultiple();
+        // Just to fill with something on the screen before the Firebase data
+        addEntry(0);
 
-        Log.d(TAG, "##### RealTimeActivity - OK #####");
+        Log.d(TAG, "##### RealTImeActivity - OK #####");
 
     }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void addEntry() {
+    private void checkFirebase() {
 
-        LineData data = realTime.getData();
-
-        if (data != null) {
-
-            ILineDataSet set = data.getDataSetByIndex(0);
-
-            if (set == null) {
-                set = createSet();
-                data.addDataSet(set);
-            }
-
-            float n = (float) ((Math.random() * 235f) + 15f);    // Between 15 - 250
-            float f = vendor.addFormatDecimal(n);                // Format n to 1 Decimal
-
-//            float n = vendor.addRandom(1, 0) + 0.2f * 0.3f;
-//            float f = vendor.addFormatDecimal(n);
-
-            data.addEntry(new Entry(set.getEntryCount(), f), 0);
-            data.notifyDataChanged();
-
-            // let the chart know it's data has changed
-            realTime.notifyDataSetChanged();
-
-            // limit the number of visible entries
-            realTime.setVisibleXRangeMaximum(15);
-            // realTime.setVisibleYRange(30, AxisDependency.LEFT);
-
-            // move to the latest entry
-            realTime.moveViewToX(data.getEntryCount());
-
-            // this automatically refreshes the chart (calls invalidate())
-            // realTime.moveViewTo(data.getXValCount()-7, 55f,
-            // AxisDependency.LEFT);
-        }
-    }
-
-    private Thread thread;
-
-    private void feedMultiple() {
-
-        if (thread != null)
-            thread.interrupt();
-
-        final Runnable runnable = new Runnable() {
-
+        listener1 = firebase1.addValueEventListener(new ValueEventListener() {
             @Override
-            public void run() {
-                addEntry();
-            }
-        };
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_CONSUMO).child(Constants.FIREBASE_VALUE_TEMPO_REAL).getValue(Float.class);
+                Log.d(TAG, "##### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " #####");
 
-        thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                for (int i = 1; i < 99999; i++) {
-
-                    // Don't generate garbage runnables inside the loop.
-                    runOnUiThread(runnable);
-
-                    try {
-                        Thread.sleep(1000); // refresh time
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                /*
+                  Not necessary anymore, but in case of no data change on Firebase the final value will be 0.
+                  That means no updates are coming from NodeMCU or the values from water read are 0.
+                  Otherwise, change all to just "addEntry(consumo);" and delete the "aux" from scope
+                 */
+                if (aux == consumo) {
+                    addEntry(0);
+                } else {
+                    addEntry(consumo);
                 }
+                aux = consumo;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read values
+                Log.d(TAG, "#####  Failed to read values from Firebase #####", databaseError.toException());
             }
         });
 
-        thread.start();
+
+        listener2 = firebase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                hora = dataSnapshot.getValue(Long.class);
+                timeStamp = Constants.SIMPLE_DATE_FORMAT.format(hora);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read values
+                Log.d(TAG, "##### Failed to read values from Firebase #####", databaseError.toException());
+            }
+        });
+    }
+
+    private void addEntry(float consumo) {
+
+        LineData dataSet = RealTIme.getData();
+
+        if (dataSet != null) {
+
+            ILineDataSet set = dataSet.getDataSetByIndex(0);
+
+            if (set == null) {
+                set = createSet();
+                dataSet.addDataSet(set);
+            }
+
+            dataSet.addEntry(new Entry(set.getEntryCount(), consumo), 0);
+
+            dataSet.notifyDataChanged();
+
+            // let the chart know it's data has changed
+            RealTIme.notifyDataSetChanged();
+
+            // limit the number of visible entries
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                RealTIme.setVisibleXRangeMaximum(5);
+            } else {
+                RealTIme.setVisibleXRangeMaximum(10);
+            }
+
+            // move to the latest entry
+            RealTIme.moveViewToX(dataSet.getEntryCount());
+
+            // Set the server time on that constant
+            firebase2.setValue(ServerValue.TIMESTAMP);
+        }
     }
 
     private LineDataSet createSet() {
 
-        LineDataSet set = new LineDataSet(null, getString(R.string.chart_05_real_time_leg));
-        set.setFormSize(20f);                    // Line Size
-        set.setColor(Color.GREEN);               // Line Color
-        set.setCircleRadius(4f);                 // Circle Size
-        set.setCircleColor(Color.GREEN);         // Circle Color
-        set.setCircleHoleRadius(3f);             // Circle Hole Size
-        set.setCircleColorHole(Color.GREEN);     // Circle Hole Color
-        set.setDrawCircleHole(false);            // Circle Hole Draw?
-        set.setHighlightLineWidth(1.2f);         // HighLight Size
-        set.setHighLightColor(Color.GREEN);      // HighLight Color
-        set.setFillAlpha(50);                    // Fill Alpha
-        set.setFillColor(Color.GREEN);           // Fill Color
-        set.setDrawFilled(true);                 // Fill Enabled?
-        set.setValueTextSize(11f);               // Text Size
-        set.setValueTextColor(Color.BLACK);      // Text Color
-        set.setDrawValues(true);                 // Text Enable?
-        return set;
+        LineDataSet set1 = new LineDataSet(null, getString(R.string.chart_05_real_time_leg));
+        set1.setFormSize(20f);                    // Line Size
+        set1.setColor(Color.GREEN);               // Line Color
+        set1.setCircleRadius(4f);                 // Circle Size
+        set1.setCircleColor(Color.GREEN);         // Circle Color
+        set1.setCircleHoleRadius(3f);             // Circle Hole Size
+        set1.setCircleColorHole(Color.GREEN);     // Circle Hole Color
+        set1.setDrawCircleHole(false);            // Circle Hole Draw?
+        set1.setHighlightLineWidth(1.2f);         // HighLight Size
+        set1.setHighLightColor(Color.GREEN);      // HighLight Color
+        set1.setFillAlpha(50);                    // Fill Alpha
+        set1.setFillColor(Color.GREEN);           // Fill Color
+        set1.setDrawFilled(true);                 // Fill Enabled?
+        set1.setValueTextSize(11f);               // Text Size
+        set1.setValueTextColor(Color.BLACK);      // Text Color
+        set1.setDrawValues(true);                 // Text Enable?
+        return set1;
     }
 
-    private void logoutUser() {
+    public void logoutUser(View v) {
         session.setLogin(false);
-
         // Delete the Table
         db.deleteUser();
-
         // Launching the login activity
         vendor.addIntent(RealTimeActivity.this, LoginActivity.class);
     }
@@ -259,12 +260,30 @@ public class RealTimeActivity extends Activity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (thread != null) {
-            thread.interrupt();
-        }
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "##### onStart ##### ");
+        // call the Firebase Listners
+        checkFirebase();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "##### onResume ##### ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        firebase1.removeEventListener(listener1);
+        firebase2.removeEventListener(listener2);
+        Log.d(TAG, "##### onPause ##### ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "##### onStop ##### ");
+    }
 }

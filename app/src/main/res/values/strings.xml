@@ -77,7 +77,7 @@
 
     <string name="chart_04_neg_pos_desc">4 - Difference per month for the last two years in M³</string>
 
-    <string name="chart_05_real_time_desc">Consumption in Liters</string>
+    <string name="chart_05_real_time_desc">Consumption in milliliters</string>
     <string name="chart_05_real_time_leg">1 second</string>
 
     <string name="img_saved">Saved as PNG image</string>
@@ -86,6 +86,7 @@
     <string name="img_txt_01">• Fast click on chart show more info</string>
     <string name="img_txt_02">• Long click on chart to save as image</string>
     <string name="img_txt_03">• Updated every 1 second</string>
+    <string name="img_txt_04">• Click on chart show more info</string>
     <string name="realtime">Real Time</string>
 
 </resources>

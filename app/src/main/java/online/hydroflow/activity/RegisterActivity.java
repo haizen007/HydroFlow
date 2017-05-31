@@ -22,11 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import online.hydroflow.R;
-import online.hydroflow.app.AppConfig;
-import online.hydroflow.app.AppController;
-import online.hydroflow.chart.Vendor;
-import online.hydroflow.helper.SQLiteHandler;
-import online.hydroflow.helper.SessionManager;
+import online.hydroflow.AppController;
+import online.hydroflow.utils.Vendor;
+import online.hydroflow.sql.SQLiteHandler;
+import online.hydroflow.sql.SessionManager;
+import online.hydroflow.utils.Constants;
 
 public class RegisterActivity extends Activity {
 
@@ -129,7 +129,7 @@ public class RegisterActivity extends Activity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
-                AppConfig.URL_REGISTER, new Response.Listener<String>() {
+                Constants.URL_REGISTER, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
