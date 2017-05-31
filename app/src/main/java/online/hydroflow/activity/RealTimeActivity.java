@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -57,22 +56,11 @@ public class RealTimeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime);
 
-        Button btnLogout = (Button) findViewById(R.id.btnLogout);
-
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
         // session manager
         session = new SessionManager(getApplicationContext());
-
-        // Logout button click event
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                logoutUser();
-            }
-        });
 
         RealTIme = (LineChart) findViewById(R.id.RealTimeChart);
 
@@ -258,12 +246,10 @@ public class RealTimeActivity extends Activity {
         return set1;
     }
 
-    private void logoutUser() {
+    public void logoutUser(View v) {
         session.setLogin(false);
-
         // Delete the Table
         db.deleteUser();
-
         // Launching the login activity
         vendor.addIntent(RealTimeActivity.this, LoginActivity.class);
     }

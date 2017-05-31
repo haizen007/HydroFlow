@@ -140,6 +140,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:background="@color/btn_logout_bg"
+        android:onClick="logoutUser"
         android:text="@string/btn_logout"
         android:textColor="@color/white"
         android:textSize="15sp" />

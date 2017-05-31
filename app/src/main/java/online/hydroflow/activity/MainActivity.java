@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -36,17 +35,12 @@ public class MainActivity extends Activity {
         TextView txtName = (TextView) findViewById(R.id.tv_name);
         TextView txtEmail = (TextView) findViewById(R.id.tv_email);
         TextView txtCPF = (TextView) findViewById(R.id.tv_cpf);
-        Button btnLogout = (Button) findViewById(R.id.btnLogout);
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
         // session manager
         session = new SessionManager(getApplicationContext());
-
-        if (!session.isLoggedIn()) {
-            logoutUser();
-        }
 
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
@@ -62,15 +56,6 @@ public class MainActivity extends Activity {
         txtEmail.setText(email);
         txtCPF.setText(cpf);
 
-        // Logout button click event
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                logoutUser();
-            }
-        });
-
         Log.d(TAG, "##### MainActivity - OK #####");
     }
 
@@ -78,12 +63,10 @@ public class MainActivity extends Activity {
      * Logging out the user. Will set isLoggedIn flag to false in shared
      * preferences Clears the user data from sqlite users table
      */
-    private void logoutUser() {
+    public void logoutUser(View v) {
         session.setLogin(false);
-
         // Delete the Table
         db.deleteUser();
-
         // Launching the login activity
         vendor.addIntent(MainActivity.this, LoginActivity.class);
     }

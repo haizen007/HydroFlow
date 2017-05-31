@@ -2,6 +2,8 @@
 
 1.3.9
 
+- removido botao logout do layout land do charts e realtime
+! ajustes de layout
 + Metodos de troca de atividade como onStart() e onPause para garantir que o app finalize e chame o checkFirebase()
 ! alterado RealTimeActivity nas strigs de 3s para 1s, thread deletada, pega direto do Firebase apenas
 - feedMultiple() removido pois agora não insere nada via Android ou thread

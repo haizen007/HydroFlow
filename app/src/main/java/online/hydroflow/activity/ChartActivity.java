@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -64,22 +63,11 @@ public class ChartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
-        Button btnLogout = (Button) findViewById(R.id.btnLogout);
-
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
         // session manager
         session = new SessionManager(getApplicationContext());
-
-        // Logout button click event
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                logoutUser();
-            }
-        });
 
         // Fill the Months Array with random data for BarChart and PieChart
         fillMonths();
@@ -731,12 +719,10 @@ public class ChartActivity extends Activity {
      * Logging out the user. Will set isLoggedIn flag to false in shared
      * preferences Clears the user data from sqlite users table
      */
-    private void logoutUser() {
+    public void logoutUser(View v) {
         session.setLogin(false);
-
         // Delete the Table
         db.deleteUser();
-
         // Launching the login activity
         vendor.addIntent(ChartActivity.this, LoginActivity.class);
     }

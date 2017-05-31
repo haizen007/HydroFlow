@@ -7,8 +7,8 @@
     tools:context=".activity.ChartActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp">
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/chart_01_line_desc"
             android:textColor="@android:color/black" />
@@ -24,13 +24,13 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/LineChart"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="275dp"
             android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             android:text="@string/chart_02_bar_desc"
             android:textColor="@android:color/black" />
@@ -38,13 +38,13 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/BarChart"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="275dp"
             android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             android:text="@string/chart_03_pie_desc"
             android:textColor="@android:color/black" />
@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             android:text="@string/chart_04_neg_pos_desc"
             android:textColor="@android:color/black" />
@@ -75,20 +75,22 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/NegativePositive"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="275dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp" />
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginRight="130dp"
-            android:layout_marginTop="60dp"
-            android:background="@color/btn_logout_bg"
-            android:text="@string/btn_logout"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+        <!--<Button-->
+        <!--android:id="@+id/btnLogout"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="130dp"-->
+        <!--android:layout_marginRight="130dp"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:background="@color/btn_logout_bg"-->
+        <!--android:onClick="logoutUser"-->
+        <!--android:text="@string/btn_logout"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="15sp" />-->
 
     </LinearLayout>
 
