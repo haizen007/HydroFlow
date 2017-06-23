@@ -2,6 +2,10 @@
 
 1.3.9
 
+- removido timestamp apenas para o Toast no RealTImeActivity
++ arquivos json separados em pasta unica no diretorio raiz
++ arquivos UML criados pela biblioteca PlantUML, acessiveis somente pelo Android Studio
+
 - removido botao logout do layout land do charts e realtime
 ! ajustes de layout
 + Metodos de troca de atividade como onStart() e onPause para garantir que o app finalize e chame o checkFirebase()

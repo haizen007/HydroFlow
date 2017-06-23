@@ -128,7 +128,8 @@ public class RealTimeActivity extends Activity {
                 RealTIme.centerViewToAnimated(e.getX(), e.getY(), RealTIme.getData().getDataSetByIndex(h.getDataSetIndex())
                         .getAxisDependency(), 500);
 
-                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
+//                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
+                vendor.addToast(h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
             }
 
             @Override
