@@ -2,7 +2,12 @@
 
 1.3.9
 
-- removido timestamp apenas para o Toast no RealTImeActivity
+! addDate() alterado para [yyyy-MM-dd]
+! addTime() alterado para  "[" + h + "h" + m + "m" + s + "s]" e com uso apenas no RealTimeActivity
++ RealTimeActivity agora salva imagem PNG com data e hora
++ ChartActivity grafico 3, de pizza, agora salva imagem como PNG
+
+- removido timestamp apenas para o Toast no RealTimeActivity
 + arquivos json separados em pasta unica no diretorio raiz
 + arquivos UML criados pela biblioteca PlantUML, acessiveis somente pelo Android Studio
 

@@ -7,11 +7,9 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.FragmentActivity;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -26,10 +24,10 @@ import java.util.Random;
 
 public class Vendor {
 
-    Calendar c = Calendar.getInstance();
+    private Calendar c = Calendar.getInstance();
 
-    final DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.US);   // Locale to USA for "." Decimal (unique pattern accepted for "Float")
-    final DecimalFormat decimalFormat = new DecimalFormat("#.#", symbols);              // Format to 1 Decimal using Locale USA -> Float Happy!
+    private final DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.US);   // Locale to USA for "." Decimal (unique pattern accepted for "Float")
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.#", symbols);              // Format to 1 Decimal using Locale USA -> Float Happy!
 
     // Check for a valid email
     public static boolean isEmailValid(String email) {
@@ -110,39 +108,39 @@ public class Vendor {
 //        String date = day + "-" + month + "-" + year;
 //        return date;
 
-        SimpleDateFormat df = new SimpleDateFormat("[dd-MM-yyyy]", Locale.US);
+        SimpleDateFormat df = new SimpleDateFormat("[yyyy-MM-dd]", Locale.GERMANY);
         return df.format(c.getTime());
     }
 
     // Get the current time
-//    public final String addTime() {
-//
-//        String h, m, s;
-//
-//        int hour = c.get(Calendar.HOUR_OF_DAY);
-//        int minutes = c.get(Calendar.MINUTE);
-//        int seconds = c.get(Calendar.SECOND);
-//
-//        if (hour < 10) {
-//            h = "0" + String.valueOf(hour);
-//        } else {
-//            h = String.valueOf(hour);
-//        }
-//
-//        if (minutes < 10) {
-//            m = "0" + String.valueOf(minutes);
-//        } else {
-//            m = String.valueOf(minutes);
-//        }
-//
-//        if (seconds < 10) {
-//            s = "0" + String.valueOf(seconds);
-//        } else {
-//            s = String.valueOf(seconds);
-//        }
-//
-//        return h + ":" + m + ":" + s;
-//    }
+    public final String addTime() {
+
+        String h, m, s;
+
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minutes = c.get(Calendar.MINUTE);
+        int seconds = c.get(Calendar.SECOND);
+
+        if (hour < 10) {
+            h = "0" + String.valueOf(hour);
+        } else {
+            h = String.valueOf(hour);
+        }
+
+        if (minutes < 10) {
+            m = "0" + String.valueOf(minutes);
+        } else {
+            m = String.valueOf(minutes);
+        }
+
+        if (seconds < 10) {
+            s = "0" + String.valueOf(seconds);
+        } else {
+            s = String.valueOf(seconds);
+        }
+
+        return "[" + h + "h" + m + "m" + s + "s]";
+    }
 
     public float addRandom(int n1, int n2) {
 
