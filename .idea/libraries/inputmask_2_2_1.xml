@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="inputmask-2.2.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/4d0c50a76046beeeb55e2dc3154bfcb666e625cf/output/res" />
       <root url="jar://$USER_HOME$/.android/build-cache/4d0c50a76046beeeb55e2dc3154bfcb666e625cf/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/4d0c50a76046beeeb55e2dc3154bfcb666e625cf/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

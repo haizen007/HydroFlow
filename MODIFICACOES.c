@@ -2,17 +2,24 @@
 
 1.3.9
 
-- removido botao logout do layout land do charts e realtime
-! ajustes de layout
++ RealTimeActivity agora salva imagem PNG com data e hora
++ ChartActivity grafico 3, de pizza, agora salva imagem como PNG
++ arquivos json separados em pasta unica no diretorio raiz
++ arquivos UML criados pela biblioteca PlantUML, acessiveis somente pelo Android Studio
 + Metodos de troca de atividade como onStart() e onPause para garantir que o app finalize e chame o checkFirebase()
-! alterado RealTimeActivity nas strigs de 3s para 1s, thread deletada, pega direto do Firebase apenas
-- feedMultiple() removido pois agora não insere nada via Android ou thread
 + feedMultiple() substituido por checkFirebase() para adicionar diretamente do Firebase, atualizando no ritmo do NodeMCU
 + firebase2 para ler timeStamp em nodo separado do consumo, que vem do NodeMCU, e funcionar no grafico
-? falta corrigir o problema do timestamp mostrar o último valor, mesmo clicando num consumo mais antigo
 + Iniciada integracao com NodeMCU via Firebase, na versao anterior pegava so o valor do timestamp do servidor Firebase
 + Metodo fillMonths() para BarChart e PieChart deixando eles com mesmos valores
+! README.md alterado com diversas informacoes
 ! Cor de vermelhor para roxo no grafico 1
+! Vendor.addDate() alterado para [yyyy-MM-dd]
+! Vendor.addTime() alterado para  "[" + h + "h" + m + "m" + s + "s]" e com uso apenas no RealTimeActivity
+! ajustes de layout
+! alterado RealTimeActivity nas strigs de 3s para 1s, thread deletada, pega direto do Firebase apenas
+- removido botao logout do layout land do charts e realtime
+- feedMultiple() removido pois agora não insere nada via Android ou thread
+- removido timestamp apenas para o Toast no RealTimeActivity
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 

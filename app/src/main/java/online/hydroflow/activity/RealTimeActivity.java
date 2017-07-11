@@ -38,13 +38,17 @@ public class RealTimeActivity extends Activity {
     private SQLiteHandler db;
     private SessionManager session;
 
+    private final Vendor vendor = new Vendor();
+    private final String date = vendor.addDate();
+    private final String time = vendor.addTime();
+    private boolean success;
+    private int permission;
+
     private LineChart RealTIme;
     private float consumo, aux;
     private String timeStamp;
     private Long hora;
     private ValueEventListener listener1, listener2;
-
-    private final Vendor vendor = new Vendor();
 
     // Firebase connection
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -128,12 +132,35 @@ public class RealTimeActivity extends Activity {
                 RealTIme.centerViewToAnimated(e.getX(), e.getY(), RealTIme.getData().getDataSetByIndex(h.getDataSetIndex())
                         .getAxisDependency(), 500);
 
-                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
+//                vendor.addToast(timeStamp + "s" + "\n" + h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
+                vendor.addToast(h.getY() + " " + getString(R.string.milliliters), RealTimeActivity.this);
             }
 
             @Override
             public void onNothingSelected() {
 
+            }
+        });
+
+        // On LongPress Listner
+        RealTIme.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                permission = vendor.addPermissions(RealTimeActivity.this);
+
+                if (permission == 0) {
+                    success = vendor.addFolder();
+                    if (success) {
+                        boolean save = RealTIme.saveToPath(getString(R.string.chart) + " 5 - " + getString(R.string.chart_05_real_time_desc) + " " + date + " " + time, "/DCIM/HydroFlow");
+                        if (save) {
+                            vendor.addToast(getString(R.string.chart) + " 5\n" + getString(R.string.img_saved), RealTimeActivity.this);
+                        } else {
+                            vendor.addToast(getString(R.string.img_error_to_save), RealTimeActivity.this);
+                        }
+                    }
+                }
+                return success;
             }
         });
 
