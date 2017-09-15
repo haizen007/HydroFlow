@@ -1,5 +1,18 @@
 /*------------------------------------------------------------------------------------------------------------------------*/
 
+1.4.0
+
++ PHP 1.3.2
++ adicionado em build.gradle o maven { url 'https://maven.google.com' }
+! API 26 para Android 8.0
+! Constants de http para https mediante exigencia do CloudFlare
+! atualizado em build.gradle para firebase 11.2.2
+! atualizado em build.gradle para inputmask 2.3.0
+! atualizado em build.gradle para android 26.1.0
+! links alterados de "hydroflow.online" para "hydroflow.ml" mas o nome do pacote foi mantido
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
 1.3.9
 
 + RealTimeActivity agora salva imagem PNG com data e hora

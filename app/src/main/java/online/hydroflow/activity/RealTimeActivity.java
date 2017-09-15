@@ -22,7 +22,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import online.hydroflow.R;
@@ -46,14 +45,15 @@ public class RealTimeActivity extends Activity {
 
     private LineChart RealTIme;
     private float consumo, aux;
-    private String timeStamp;
-    private Long hora;
-    private ValueEventListener listener1, listener2;
+//    private String timeStamp;
+//    private Long hora;
+    private ValueEventListener listener1;
+//    private ValueEventListener listener2;
 
     // Firebase connection
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference firebase1 = database.getReference(Constants.FIREBASE_VALUE_USUARIO);
-    DatabaseReference firebase2 = database.getReference(Constants.FIREBASE_VALUE_TIMESTAMP);
+//    DatabaseReference firebase2 = database.getReference(Constants.FIREBASE_VALUE_TIMESTAMP);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +179,8 @@ public class RealTimeActivity extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 consumo = dataSnapshot.child(Constants.FIREBASE_VALUE_CONSUMO).child(Constants.FIREBASE_VALUE_TEMPO_REAL).getValue(Float.class);
-                Log.d(TAG, "##### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " #####");
+                Log.d(TAG, "##### Value consumo: " + consumo + " #####");
+//                Log.d(TAG, "##### Value consumo: " + consumo + ", timeStamp: " + timeStamp + " #####");
 
                 /*
                   Not necessary anymore, but in case of no data change on Firebase the final value will be 0.
@@ -202,19 +203,19 @@ public class RealTimeActivity extends Activity {
         });
 
 
-        listener2 = firebase2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                hora = dataSnapshot.getValue(Long.class);
-                timeStamp = Constants.SIMPLE_DATE_FORMAT.format(hora);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Failed to read values
-                Log.d(TAG, "##### Failed to read values from Firebase #####", databaseError.toException());
-            }
-        });
+//        listener2 = firebase2.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                hora = dataSnapshot.getValue(Long.class);
+//                timeStamp = Constants.SIMPLE_DATE_FORMAT.format(hora);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Failed to read values
+//                Log.d(TAG, "##### Failed to read values from Firebase #####", databaseError.toException());
+//            }
+//        });
     }
 
     private void addEntry(float consumo) {
@@ -248,7 +249,7 @@ public class RealTimeActivity extends Activity {
             RealTIme.moveViewToX(dataSet.getEntryCount());
 
             // Set the server time on that constant
-            firebase2.setValue(ServerValue.TIMESTAMP);
+//            firebase2.setValue(ServerValue.TIMESTAMP);
         }
     }
 
@@ -304,7 +305,7 @@ public class RealTimeActivity extends Activity {
     protected void onPause() {
         super.onPause();
         firebase1.removeEventListener(listener1);
-        firebase2.removeEventListener(listener2);
+//        firebase2.removeEventListener(listener2);
         Log.d(TAG, "##### onPause ##### ");
     }
 
