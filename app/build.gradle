@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
     defaultConfig {
-        applicationId "online.hydroflow"
-        minSdkVersion 17
-        targetSdkVersion 25
+        applicationId 'online.hydroflow'
+        minSdkVersion 18
+        targetSdkVersion 26
         versionCode 3
-        versionName '1.3.9'
+        versionName '1.4.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url 'https://maven.google.com' }
+        }
     }
     buildTypes {
         release {
@@ -29,25 +35,26 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
     // Para o TextView exibir etiqueta flutuante do texto de hint quando o campo estiver preenchido
     compile 'com.android.volley:volley:1.0.0'
     // Biblioteca HTTP para se conectar ao PHP
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     // Biblioteca para gerar os Graficos
-    compile 'com.redmadrobot:inputmask:2.2.1'
+    compile 'com.redmadrobot:inputmask:2.3.0'
     // Biblioteca para EditText com Mask via Codigo | https://github.com/RedMadRobot/input-mask-android
-    compile 'com.google.firebase:firebase-auth:10.2.1'
-    compile 'com.google.firebase:firebase-crash:10.2.1'
-    compile 'com.google.firebase:firebase-messaging:10.2.1'
-    compile 'com.google.firebase:firebase-storage:10.2.1'
-    compile 'com.google.firebase:firebase-core:10.2.1'
-    compile 'com.google.firebase:firebase-database:10.2.1'
-    compile 'com.google.firebase:firebase-invites:10.2.1'
-    compile 'com.google.android.gms:play-services-auth:10.2.1'
+    compile 'com.google.firebase:firebase-auth:11.2.2'
+    compile 'com.google.firebase:firebase-crash:11.2.2'
+    compile 'com.google.firebase:firebase-messaging:11.2.2'
+    compile 'com.google.firebase:firebase-storage:11.2.2'
+    compile 'com.google.firebase:firebase-core:11.2.2'
+    compile 'com.google.firebase:firebase-database:11.2.2'
+    compile 'com.google.firebase:firebase-invites:11.2.2'
+    compile 'com.google.android.gms:play-services-auth:11.2.2'
     // Permite login pelo google
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-annotations:25.3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'                 // Para o Firebase
