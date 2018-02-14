@@ -4,6 +4,9 @@
 
 + PHP 1.3.2
 + adicionado em build.gradle o maven { url 'https://maven.google.com' }
+! atualizado versao code 4 com url 'hydroflow.yonathan.com.br'
+! atualizado MPAndroidChart para 3.0.3
+! atualizado Firebase para 11.8.0
 ! API 26 para Android 8.0
 ! Constants de http para https mediante exigencia do CloudFlare
 ! atualizado em build.gradle para firebase 11.2.2
