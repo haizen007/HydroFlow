@@ -6,7 +6,20 @@
     android:background="@color/bg_main"
     tools:context=".activity.MainActivity">
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@color/btn_logout_bg"
+        android:onClick="logoutUser"
+        android:text="@string/btn_logout"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/LayoutLogo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -20,8 +33,6 @@
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:contentDescription="@string/logo"
             android:src="@drawable/logo_light" />
 
@@ -29,7 +40,6 @@
             android:id="@+id/tv_app_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
             android:layout_marginBottom="40dp"
             android:gravity="center"
             android:textSize="20sp" />
@@ -38,7 +48,6 @@
             android:id="@+id/tv_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_app_version"
             android:gravity="center"
             android:text="@string/welcome"
             android:textColor="@color/color_01"
@@ -48,7 +57,6 @@
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_welcome"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:padding="5dp"
@@ -58,17 +66,6 @@
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_cpf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_email"
-            android:layout_gravity="center"
             android:gravity="center"
             android:padding="5dp"
             android:textSize="16sp" />
@@ -76,7 +73,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_cpf"
             android:layout_marginTop="20dp"
             android:gravity="center">
 
@@ -106,22 +102,9 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-
         </RelativeLayout>
 
+    </LinearLayout>
 
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@color/btn_logout_bg"
-        android:onClick="logoutUser"
-        android:text="@string/btn_logout"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
 
 </RelativeLayout>

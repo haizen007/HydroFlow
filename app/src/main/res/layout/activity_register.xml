@@ -23,11 +23,11 @@
             android:src="@drawable/logo_light" />
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -38,89 +38,89 @@
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_cpf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name"
-                android:hint="@string/hiny_cpf"
+                android:hint="@string/hint_cpf"
                 android:inputType="phone"
                 android:maxLength="14"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textColor="@color/input_register" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_cpf"
-                android:hint="@string/hiny_phone"
+                android:hint="@string/hint_phone"
                 android:inputType="phone"
                 android:maxLength="15"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_address"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_phone"
-                android:hint="@string/hiny_address"
+                android:hint="@string/hint_address"
                 android:inputType="textCapWords"
                 android:maxLength="100"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_cep"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_address"
-                android:hint="@string/hiny_cep"
+                android:hint="@string/hint_cep"
                 android:inputType="phone"
                 android:maxLength="9"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_email"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -131,14 +131,14 @@
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button

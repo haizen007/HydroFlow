@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">HydroFlow</string>
     <string name="welcome">Bem-vindo</string>
     <string name="toast_register_ok">Usuário registrado com sucesso</string>
@@ -11,14 +12,16 @@
     <string name="pDialog_login">Conectando…</string>
     <string name="hint_password">Senha</string>
     <string name="hint_name">Nome</string>
+    <string name="hint_address">Endereço</string>
+    <string name="hint_phone">Telefone</string>
+    <string name="hint_cpf">CPF</string>
+    <string name="hint_cep">CEP</string>
     <string name="exit">Pressione voltar novamente para sair</string>
     <string name="btn_register">REGISTRAR</string>
     <string name="btn_logout">DESCONECTAR</string>
     <string name="btn_login">CONECTAR</string>
     <string name="btn_link_to_register">Registrar</string>
     <string name="btn_link_to_login">Conectar</string>
-    <string name="hiny_address">Endereço</string>
-    <string name="hiny_phone">Telefone</string>
     <string name="toast_error_email">Insira um endereço de e-mail válido</string>
     <string name="toast_error_password_login">A senha deve ter pelo menos\n8 caracteres</string>
     <string name="toast_error_password_register">Insira uma senha com pelo menos\n8 caracteres</string>
@@ -59,4 +62,8 @@
     <string name="chart_05_real_time_desc">Consumo em mililitros</string>
     <string name="chart_05_real_time_leg">1 segundo</string>
     <string name="hour">Hora</string>
+    <string name="switch_demo">Dados de Demonstração</string>
+    <string name="toast_demo_data_off">Dados de Demonstração OFF</string>
+    <string name="toast_demo_data_on">Dados de Demonstração ON</string>
+
 </resources>

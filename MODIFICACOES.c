@@ -1,5 +1,26 @@
 /*------------------------------------------------------------------------------------------------------------------------*/
 
+1.4.1
+
++ Politica de Privacidade com "https://app-privacy-policy-generator.firebaseapp.com"
++ Switch button e data generica de demonstracao com botao para ativar
++ google() em build.grades
+! SplashActivity removido o delay com thread e adicionado com handler
+! SplashActivity com delay de 1 segundo sempre mesmo logado
+! AppController movido para dentro da pasta sql
+! Application ID alterada para 'br.com.yonathan.hydroflow'
+! atualizados os links para os DBs
+! atualizacoes nas traducoes
+! atualizadas no geral em bibliotecas, metodos, pacotes, gradle...
+! Volley para 1.1.0
+! inputmask para 6.0.0
+- implementation 'junit:junit:4.13'
+- Model removido ja que nao fazia nada
+- removido texto de ID / CPF da MainActivity
+- removidas varias 'dependencies Firebase' que nao eram utilizadas
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
 1.4.0
 
 + PHP 1.3.2
