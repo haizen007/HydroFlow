@@ -32,7 +32,7 @@ Link: [Google Play](https://play.google.com/store/apps/details?id=br.com.yonatha
 
  - **Consumption per month in annual %**
 
-![alt-Charts](/images/05.png "Consumption per month in annual %**")
+![alt-Charts](/images/05.png "Consumption per month in annual %")
 
 
  - **Difference per month of the last two years in M³**
