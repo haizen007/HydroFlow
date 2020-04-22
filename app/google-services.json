@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1037438643179:android:2c09f9725ab9355edc07ae",
+        "android_client_info": {
+          "package_name": "br.com.yonathan.hydroflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEOEeKKNmX_hvyicsU4MP1bRVgIcfGF74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1037438643179:android:c4aad808b865d09f",
         "android_client_info": {
           "package_name": "online.hydroflow"
@@ -33,20 +62,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "1037438643179-ts6ejn4d6rj7b7u33buioahebadn8hgi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

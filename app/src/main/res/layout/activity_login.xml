@@ -28,7 +28,8 @@
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="10dp"
-        android:textColorHint="@color/input_login_hint" />
+        android:textColorHint="@color/input_login_hint"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/tv_password"
@@ -41,7 +42,8 @@
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/input_login"
-        android:textColorHint="@color/input_login_hint" />
+        android:textColorHint="@color/input_login_hint"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnLogin"

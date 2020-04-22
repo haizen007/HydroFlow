@@ -1,33 +1,45 @@
-## Versão
+## Version
 
-1.4.0
-
+1.4.1
 
 ## Demo
 
-Link do APK: [Google Play](https://play.google.com/store/apps/details?id=online.hydroflow)
+Link: [Google Play](https://play.google.com/store/apps/details?id=br.com.yonathan.hydroflow)
 
 
-## Screen Shots
+## ScreenShots
 
- - **Comparação de Consumo em Litros**
+ - **App Interface and Real-Time Chart**
  
-![alt tag](https://github.com/haizen007/HydroFlow/blob/master/screenshots_readme/HydroFlow-App-Chart-01.png)
-
-
-
- - **Consumo por mês em M³ - Consumo por mês em % anual**
  
-![alt tag](https://github.com/haizen007/HydroFlow/blob/master/screenshots_readme/HydroFlow-App-Chart-02-03.png)
-
-
-
- - **Diferença por mês nos últimos dois anos em M³**
+![alt-Charts](/images/01.png "App Interface and Real-Time Chart")
  
-![alt tag](https://github.com/haizen007/HydroFlow/blob/master/screenshots_readme/HydroFlow-App-Chart-04.png)
-
-
-
- - **Tempo Real - Consumo em mililitros**
+ - **Charts - Portrait**
  
-![alt tag](https://github.com/haizen007/HydroFlow/blob/master/screenshots_readme/HydroFlow-App-Real-Time.png)
+ 
+![alt-Charts](/images/02.png "Charts - Portrait")
+
+
+ - **Comparison of consumption in Liters**
+ 
+![alt-Charts](/images/03.png "Comparison of consumption in Liters")
+
+
+ - **Consumption per month in M³**
+
+![alt-Charts](/images/04.png "Consumption per month in M³")
+
+
+ - **Consumption per month in annual %**
+
+![alt-Charts](/images/05.png "Consumption per month in annual %**")
+
+
+ - **Difference per month of the last two years in M³**
+
+![alt-Charts](/images/06.png "Difference per month of the last two years in M³")
+
+
+ - **Real-Time - Consumption in milliliters**
+
+![alt-Charts](/images/07.png "Real-Time - Consumption in milliliters")

@@ -8,74 +8,6 @@
     android:orientation="vertical"
     tools:context=".activity.RealTimeActivity">
 
-    <LinearLayout
-        android:id="@+id/top"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#1b2836"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/realtime"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/img_txt_03"
-            android:textColor="#FFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="-10dp"
-            android:gravity="center"
-            android:text="@string/img_txt_04"
-            android:textColor="#FFF"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/top"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:text="@string/chart_05_real_time_desc"
-            android:textColor="@android:color/black" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/RealTimeChart"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="110dp"
-            android:layout_marginTop="10dp" />
-
-    </LinearLayout>
-
-
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="fill_parent"
@@ -87,5 +19,83 @@
         android:text="@string/btn_logout"
         android:textColor="@color/white"
         android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#1b2836"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/realtime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/realtime"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt03"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/img_txt_03"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txt04"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-10dp"
+            android:gravity="center"
+            android:text="@string/img_txt_04"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LayoutRealTimeChart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-3dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Switch
+            android:id="@+id/switch_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:checked="false"
+            android:switchPadding="10dp"
+            android:text="@string/switch_demo"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/chart_05_real_time_desc"
+            android:textColor="@android:color/black" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/RealTimeChart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="100dp" />
+    </LinearLayout>
 
 </RelativeLayout>

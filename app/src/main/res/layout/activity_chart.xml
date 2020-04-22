@@ -51,7 +51,6 @@
                     android:text="@string/img_txt_02"
                     android:textColor="#FFF"
                     android:textSize="12sp" />
-
             </LinearLayout>
 
 
