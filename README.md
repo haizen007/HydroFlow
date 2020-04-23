@@ -2,7 +2,7 @@
 
 1.4.1
 
-## Demo
+## Android
 
 Link: [Google Play](https://play.google.com/store/apps/details?id=br.com.yonathan.hydroflow)
 
